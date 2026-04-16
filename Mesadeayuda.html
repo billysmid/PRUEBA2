@@ -324,4 +324,53 @@
             <!-- Autogestión -->
             <div>
                 <h2 class="section-title"><i class="fas fa-cog"></i> Autogestión</h2>
-                <!-- Aquí van tus tarjetas de
+                <!-- Aquí van tus tarjetas de autogestión -->
+            </div>
+        </div>
+
+        <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
+            <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
+        </a>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-bg" id="miModal">
+        <div class="modal-box">
+            <div class="check-square"><i class="fas fa-check"></i></div>
+            <h2>¡Solicitud iniciada!</h2>
+            <p id="modal-text">Estamos procesando tu solicitud...</p>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Acordeones
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.querySelector('.accordion-header').addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // Modal
+        function abrirModal(texto) {
+            document.getElementById('modal-text').innerHTML = texto.includes('Llamada') 
+                ? 'Conectando con un agente...<br><small>Simulación activa</small>' 
+                : `Estamos procesando: <strong>${texto}</strong>`;
+            document.getElementById('miModal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        // Función para cambiar usuario dinámicamente
+        function cambiarUsuario(nombre, iniciales, handle) {
+            document.getElementById('user-name').textContent = nombre;
+            document.getElementById('user-initials').textContent = iniciales;
+            document.getElementById('user-handle').textContent = handle;
+        }
+    </script>
+</body>
+</html>
