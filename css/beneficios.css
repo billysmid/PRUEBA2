@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap");
+
+:root {
+  --andes-cyan: #00c1ff;
+  --andes-navy: #002d57;
+  --andes-fuchsia: #ff007c;
+  --andes-yellow: #fed001;
+  --andes-white: #ffffff;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: var(--andes-cyan);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 40px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sidebar-logo-img {
+    width: 100%;
+    max-width: 190px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-left: -5px;
+    padding-left: 15px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.menu-item a {
+    display: block;
+    padding: 18px 35px;
+    color: var(--andes-white);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    background: transparent;
+    border-left: 6px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 6px solid var(--andes-white);
+    padding-left: 29px;
+}
+
+/* --- NAVBAR --- */
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #afafaf;
+    transition: color 0.3s ease;
+}
+
+.nav-item.active a {
+    color: var(--andes-cyan);
+}
+
+/* --- ESTILOS DE BENEFICIOS --- */
+.header-container {
+    margin-bottom: 15px !important; 
+    padding-bottom: 0px !important;
+    border-bottom: none !important;
+}
+
+.header-container h1 {
+    margin-bottom: 5px; 
+}
+
+.header-container p {
+    line-height: 1.8 !important; 
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
+    color: #777; 
+}
+
+.main-title {
+    color: var(--andes-navy);
+    font-size: 44px;           
+    font-weight: 800;
+    margin-bottom: 18px;
+    line-height: 1.1;     
+}
+
+.section-subtitle {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* --- ESTILOS DE BENEFICIOS INDIVIDUALES --- */
+.main-content {
+    background-color: #f9f9f9;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.benefit-card {
+    background-color: #ffffff;
+    border: 2px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 0 #e5e5e5; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.card-category {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+    font-size: 18px;
+    color: var(--andes-navy);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.benefit-details {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.benefit-details li {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.btn-action {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 12px;
+    background-color: #f0f7ff;
+    color: #00c1ff;
+    transition: all 0.2s;
+}
+
+/* === COLORES CORPORATIVOS POR CATEGORÍA === */
+/* Salud (Rosa) */
+.cat-salud .card-category { color: #ff1a75; }
+.cat-salud .btn-action { background-color: #fff0f5; color: #ff1a75; }
+.cat-salud .btn-action:hover { background-color: #ff1a75; color: #ffffff; }
+
+/* Educación (Cian) */
+.cat-educacion .card-category { color: #00ccff; }
+.cat-educacion .btn-action:hover { background-color: #00ccff; color: #ffffff; }
+
+/* Finanzas (Navy) */
+.cat-finanzas .card-category { color: #002d5d; }
+.cat-finanzas .btn-action { background-color: #e1eaf3; color: #002d5d; }
+.cat-finanzas .btn-action:hover { background-color: #002d5d; color: #ffffff; }
+
+/* Calidad de Vida (Verde) */
+.cat-vida .card-category { color: #00a800; }
+.cat-vida .btn-action { background-color: #e6f9e6; color: #00a800; }
+.cat-vida .btn-action:hover { background-color: #00a800; color: #ffffff; }
+
+/* Comunidad (Amarillo) */
+.cat-comunidad .card-category { color: #fed001; }
+.cat-comunidad .btn-action { background-color: #fff9e6; color: #b89600; }
+
+.cat-comunidad .btn-action:hover { background-color: #fed001; color: #ffffff; }
+
+/* ============================================= */
+/* COLORES REPRESENTATIVOS POR CATEGORÍA (TARJETA COMPLETA) */
+/* ============================================= */
+
+.cat-salud {
+    border-top: 8px solid #ff1a75;
+    background-color: #fff0f5;
+}
+
+.cat-educacion {
+    border-top: 8px solid #00ccff;
+    background-color: #e6f9ff;
+}
+
+.cat-finanzas {
+    border-top: 8px solid #002d5d;
+    background-color: #e6edf7;
+}
+
+.cat-vida {
+    border-top: 8px solid #00a800;
+    background-color: #e6f9e6;
+}
+
+.cat-comunidad {
+    border-top: 8px solid #fed001;
+    background-color: #fff9e6;
