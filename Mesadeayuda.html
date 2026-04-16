@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* Todo tu CSS anterior (lo mantengo igual) */
         :root {
             --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
         }
@@ -50,7 +49,7 @@
 
         .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.6rem; margin-bottom: 25px; color: #2c3e50; }
 
-        /* Acordeón */
+        /* ACORDEÓN */
         .accordion-item {
             margin-bottom: 14px; border: 1px solid #eee; border-radius: 16px;
             overflow: hidden; background: white;
@@ -102,116 +101,4 @@
 
         .modal-box {
             background: white; padding: 40px; border-radius: 25px;
-            text-align: center; width: 380px; box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
-
-        .check-square {
-            width: 80px; height: 80px; background: #27ae60; color: white;
-            border-radius: 16px; margin: 0 auto 20px; display: flex;
-            align-items: center; justify-content: center; font-size: 40px;
-        }
-
-        .btn-close {
-            background: #4481eb; color: white; border: none;
-            padding: 12px 50px; border-radius: 10px; cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <header class="hero">
-        <i class="fas fa-headset" style="font-size: 55px; margin-bottom: 15px;"></i>
-        <h1>Mesa de Ayuda</h1>
-        <p>Tu soporte siempre disponible</p>
-    </header>
-
-    <div class="container">
-        <p class="text-intro">Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.</p>
-
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="¿En qué te podemos ayudar hoy?">
-            <i class="fas fa-search"></i>
-        </div>
-
-        <div class="grid">
-            <div>
-                <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <i class="fas fa-briefcase brown"></i> <span>Esenciales del negocio</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
-                        <p>Ingresa con tu usuario temporal...</p>
-                        <!-- agrega el resto del contenido -->
-                    </div>
-                </div>
-
-                <!-- Repite para los otros 2 acordeones -->
-            </div>
-
-            <!-- Autogestión (tarjetas) -->
-            <div>
-                <h2 class="section-title"><i class="fas fa-cog"></i> Autogestión</h2>
-                <!-- tus card-item aquí -->
-            </div>
-        </div>
-
-        <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
-            <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
-        </a>
-    </div>
-
-    <!-- Modal (tu modal actual) -->
-
-    <script>
-    // Acordeones
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("✅ Script cargado correctamente");
-
-        const headers = document.querySelectorAll('.accordion-header');
-        
-        headers.forEach(header => {
-            header.addEventListener('click', function() {
-                const item = this.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-    });
-
-    // Modal - Versión corregida y segura
-    function abrirModal(tipo) {
-        const modal = document.getElementById('miModal');
-        const text = document.getElementById('modal-text');
-        
-        if (!modal || !text) {
-            console.error("Modal no encontrado");
-            return;
-        }
-
-        if (tipo && tipo.includes('Llamada')) {
-            text.innerHTML = 'Conectando con un agente...<br><small>En menos de 30 segundos (simulación)</small>';
-        } else {
-            text.innerHTML = `Estamos procesando: <strong>${tipo || 'tu solicitud'}</strong>`;
-        }
-        
-        modal.style.display = 'flex';
-    }
-
-    function cerrarModal() {
-        const modal = document.getElementById('miModal');
-        if (modal) modal.style.display = 'none';
-    }
-
-    // Cerrar modal al hacer clic fuera
-    window.addEventListener('click', function(e) {
-        const modal = document.getElementById('miModal');
-        if (e.target === modal) {
-            cerrarModal();
-        }
-    });
-</script>
-</body>
-</html>
+            text-align: center; width: 380px; box-shadow: 0 15
