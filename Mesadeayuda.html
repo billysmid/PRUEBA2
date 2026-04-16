@@ -7,113 +7,321 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; }
-
-        /* TOP BAR */
-        .top-bar {
-            height: 70px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .logo { font-size: 24px; font-weight: bold; color: #00a1e0; display: flex; align-items: center; }
-        .logo span { font-size: 32px; margin-right: 6px; }
-        .nav-links a { margin: 0 25px; text-decoration: none; color: #333; font-weight: 500; }
-        .nav-links a:hover { color: #00a1e0; }
-        .user-info { display: flex; align-items: center; gap: 12px; }
-        .user-avatar {
-            width: 40px; height: 40px; background: #00a1e0; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
+        :root {
+            --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
         }
 
-        /* SIDEBAR */
-        .sidebar {
-            width: 260px; background: #00a1e0; color: white;
-            position: fixed; top: 70px; bottom: 0; left: 0; padding-top: 30px;
-        }
-        .sidebar a {
-            display: block; padding: 15px 30px; color: white; text-decoration: none; font-size: 1.05rem;
-        }
-        .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.2); }
-
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 260px; margin-top: 70px; padding: 40px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #333;
         }
 
         .hero {
-            background: linear-gradient(90deg, #4481eb, #04befe);
-            color: white; padding: 50px 40px; border-radius: 12px; text-align: center; margin-bottom: 40px;
+            background: var(--blue-gradient);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 { margin: 0; font-size: 2.8rem; }
+        .hero p { margin: 10px 0 0; font-size: 1.1rem; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
+
+        .search-bar {
+            max-width: 650px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 18px 25px 18px 55px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4481eb;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+        }
+
+        /* Acordeones */
+        .accordion-item {
+            margin-bottom: 14px;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 18px 25px;
+            background: white;
+            border: none;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.05rem;
+            cursor: pointer;
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #f9fafc;
+            padding: 0 25px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 20px 25px;
+        }
+
+        .accordion-item.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* Tarjetas Autogestión */
+        .card-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 25px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card-item:hover {
+            border-color: #4481eb;
+            background: #f9fbff;
+        }
+
+        .btn-call {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Modal */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            width: 380px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .check-square {
+            width: 80px; height: 80px;
+            background: #27ae60;
+            color: white;
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .btn-close {
+            background: #4481eb;
+            color: white;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR -->
-    <header class="top-bar">
-        <div class="logo"><span>A</span> LOS ANDES</div>
-        <div class="nav-links">
-            <a href="dashboard.html">DASHBOARD</a>
-            <a href="capacitaciones.html">MIS CAPACITACIONES</a>
-            <a href="beneficios.html">BENEFICIOS</a>
-        </div>
-        <div class="user-info">
-            <div class="user-avatar">JL</div>
-            <div>
-                <strong>Juan Loco</strong><br>
-                <small>@univrsida</small>
-            </div>
-        </div>
+    <header class="hero">
+        <i class="fas fa-headset" style="font-size: 60px; margin-bottom: 15px;"></i>
+        <h1>Mesa de Ayuda</h1>
+        <p>Tu soporte siempre disponible</p>
     </header>
 
-    <!-- SIDEBAR -->
-    <nav class="sidebar">
-        <a href="dashboard.html">Inicio</a>
-        <a href="capacitaciones.html">Capacitaciones</a>
-        <a href="videos.html">Videos</a>
-        <a href="herramientas.html">Herramientas</a>
-        <a href="Mesadeayuda.html" class="active">Mesa de ayuda</a>
-    </nav>
+    <div class="container">
+        <p class="intro">Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.</p>
 
-    <!-- CONTENIDO DE MESA DE AYUDA -->
-    <main class="main-content">
-        <div class="hero">
-            <i class="fas fa-headset" style="font-size: 55px; margin-bottom: 15px;"></i>
-            <h1>Mesa de Ayuda</h1>
-            <p>Tu soporte siempre disponible</p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="¿En qué te podemos ayudar hoy?">
+            <i class="fas fa-search"></i>
         </div>
 
-        <p style="text-align:center; color:#666; margin-bottom:40px;">
-            Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.
-        </p>
-
-        <div style="max-width:680px; margin:0 auto 50px; position:relative;">
-            <input type="text" placeholder="¿En qué te podemos ayudar hoy?" style="width:100%; padding:16px 20px 16px 55px; border-radius:50px; border:1px solid #ddd; font-size:1.05rem;">
-            <i class="fas fa-search" style="position:absolute; left:25px; top:50%; transform:translateY(-50%); color:#666;"></i>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+        <div class="grid">
+            <!-- Preguntas Frecuentes -->
             <div>
-                <h2 style="font-size:1.6rem; margin-bottom:20px;"><i class="fas fa-question-circle" style="color:#e74c3c"></i> Preguntas Frecuentes</h2>
-                <!-- Aquí irán los acordeones más adelante -->
+                <h2 class="section-title"><i class="fas fa-question-circle" style="color:#e74c3c"></i> Preguntas Frecuentes</h2>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span><i class="fas fa-briefcase"></i> Esenciales del negocio</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
+                        <p>Ingresa con tu usuario temporal. El sistema te pedirá crear una clave de 8 caracteres con números y letras.</p>
+                        <p><strong>¿Cómo consulto mis saldos y movimientos?</strong></p>
+                        <p>Desde el Dashboard → sección “Mis Cuentas”. Puedes descargar el estado de cuenta en PDF.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span><i class="fas fa-user"></i> Esenciales del usuario</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
+                        <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu DNI o correo registrado.</p>
+                        <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
+                        <p>Ve a Autogestión → “Actualizar mis datos” y verifica tu identidad con código OTP.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span><i class="fas fa-building"></i> Esenciales de la organización</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>¿Cómo autorizo a un nuevo colaborador?</strong></p>
+                        <p>El administrador debe ir a “Gestión de usuarios” → Agregar colaborador con DNI y asignar permisos.</p>
+                        <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
+                        <p>El administrador debe desactivar o eliminar el usuario para revocar el acceso.</p>
+                    </div>
+                </div>
             </div>
+
+            <!-- Autogestión -->
             <div>
-                <h2 style="font-size:1.6rem; margin-bottom:20px;"><i class="fas fa-cog"></i> Autogestión</h2>
-                <!-- Aquí irán las tarjetas -->
+                <h2 class="section-title"><i class="fas fa-cog"></i> Autogestión</h2>
+                
+                <div class="card-item" onclick="abrirModal('Reiniciar mi clave de Corebank')">
+                    <span><i class="fas fa-key" style="color:#f1c40f"></i> Reiniciar mi clave de Corebank</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="card-item" onclick="abrirModal('Recuperar mi correo electrónico')">
+                    <span><i class="fas fa-envelope" style="color:#e74c3c"></i> Recuperar mi correo electrónico</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="card-item" onclick="abrirModal('Simuladores de Créditos')">
+                    <span><i class="fas fa-calculator" style="color:#3498db"></i> Simuladores de Créditos</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
             </div>
         </div>
 
-        <button style="width:100%; padding:18px; background:#1e3a8a; color:white; border:none; border-radius:50px; margin-top:40px; font-size:1.1rem; cursor:pointer;">
+        <button class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
             <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
         </button>
-    </main>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal-bg" id="miModal">
+        <div class="modal-box">
+            <div class="check-square"><i class="fas fa-check"></i></div>
+            <h2>¡Solicitud iniciada!</h2>
+            <p id="modal-text">Estamos procesando tu solicitud...</p>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Acordeones
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // Modal
+        function abrirModal(texto) {
+            const modal = document.getElementById('miModal');
+            const text = document.getElementById('modal-text');
+            text.innerHTML = texto.includes('Llamada') 
+                ? 'Conectando con un agente...<br><small>Simulación activa</small>' 
+                : `Estamos procesando: <strong>${texto}</strong>`;
+            modal.style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
