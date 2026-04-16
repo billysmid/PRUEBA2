@@ -9,13 +9,12 @@
     <style>
         :root {
             --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
-            --shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #fff;
+            background-color: #f8f9fa;
             color: #333;
         }
 
@@ -27,134 +26,64 @@
         }
 
         .hero h1 { margin: 0; font-size: 2.6rem; }
-        .hero p { margin: 10px 0 0; font-size: 1.1rem; opacity: 0.95; }
+        .hero p { margin: 10px 0 0; font-size: 1.1rem; }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        .text-intro {
-            color: #777;
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 1.05rem;
-        }
+        .text-intro { color: #777; text-align: center; margin-bottom: 50px; font-size: 1.05rem; }
 
-        .search-bar {
-            position: relative;
-            max-width: 650px;
-            margin: 0 auto 60px;
-        }
+        .search-bar { position: relative; max-width: 650px; margin: 0 auto 60px; }
 
         .search-bar input {
-            width: 100%;
-            padding: 18px 25px 18px 50px;
-            border-radius: 50px;
-            border: 1px solid #ddd;
-            box-shadow: var(--shadow);
-            outline: none;
-            font-size: 1.05rem;
+            width: 100%; padding: 18px 25px 18px 55px; border-radius: 50px;
+            border: 1px solid #ddd; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            outline: none; font-size: 1.05rem;
         }
 
         .search-bar i {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
+            position: absolute; left: 25px; top: 50%; transform: translateY(-50%);
             color: #4481eb;
-            font-size: 1.3rem;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-        }
+        .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.6rem; margin-bottom: 25px; color: #2c3e50; }
 
         .accordion-item {
-            margin-bottom: 14px;
-            border: 1px solid #eee;
-            border-radius: 16px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 14px; border: 1px solid #eee; border-radius: 16px;
+            overflow: hidden; background: white;
         }
 
         .accordion-header {
-            width: 100%;
-            padding: 18px 25px;
-            background: white;
-            border: none;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.05rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
+            width: 100%; padding: 18px 25px; background: white; border: none;
+            text-align: left; display: flex; justify-content: space-between;
+            align-items: center; font-size: 1.05rem; cursor: pointer;
         }
 
-        .accordion-header:hover {
-            background: #f8fbff;
-        }
+        .accordion-header:hover { background: #f8f9fa; }
 
         .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: #f9fafc;
-            padding: 0 25px;
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+            background: #f9fafc; padding: 0 25px;
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 500px;
-            padding: 20px 25px;
+            max-height: 500px; padding: 20px 25px;
         }
 
-        .accordion-header i.fa-chevron-down {
-            transition: transform 0.4s ease;
-        }
+        .accordion-header i.fa-chevron-down { transition: transform 0.4s ease; }
 
         .accordion-item.active .accordion-header i.fa-chevron-down {
             transform: rotate(180deg);
         }
 
         .card-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 25px;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: 0.3s;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 25px; border: 1px solid #eee; border-radius: 15px;
+            margin-bottom: 12px; cursor: pointer; transition: 0.3s;
         }
 
-        .card-item:hover {
-            border-color: #4481eb;
-            background-color: #f9fbff;
-            transform: translateX(6px);
-        }
-
-        .card-left { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            font-weight: 500; 
-        }
+        .card-item:hover { border-color: #4481eb; background: #f9fbff; }
 
         .red { color: #e74c3c; }
         .blue { color: #3498db; }
@@ -162,66 +91,32 @@
         .brown { color: #8d6e63; }
 
         .btn-call {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-            text-decoration: none;
-            font-size: 1.1rem;
+            background: #1e3a8a; color: white; padding: 18px; border-radius: 50px;
+            text-align: center; font-weight: bold; margin-top: 40px;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            width: 100%; border: none; cursor: pointer;
         }
 
         .modal-bg {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); justify-content: center; align-items: center;
             z-index: 1000;
         }
 
         .modal-box {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 25px;
-            text-align: center;
-            width: 380px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; width: 380px; box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         }
 
         .check-square {
-            width: 80px;
-            height: 80px;
-            background: #27ae60;
-            color: white;
-            font-size: 40px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
+            width: 80px; height: 80px; background: #27ae60; color: white;
+            border-radius: 16px; margin: 0 auto 20px; display: flex;
+            align-items: center; justify-content: center; font-size: 40px;
         }
 
         .btn-close {
-            background: #4481eb;
-            color: white;
-            border: none;
-            padding: 12px 50px;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
+            background: #4481eb; color: white; border: none;
+            padding: 12px 50px; border-radius: 10px; cursor: pointer;
         }
     </style>
 </head>
@@ -242,13 +137,12 @@
         </div>
 
         <div class="grid">
-            <!-- Preguntas Frecuentes -->
             <div>
                 <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <div class="card-left"><i class="fas fa-briefcase brown"></i> Esenciales del negocio</div>
+                        <i class="fas fa-briefcase brown"></i> <span>Esenciales del negocio</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="accordion-content">
@@ -261,12 +155,12 @@
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <div class="card-left"><i class="fas fa-user blue"></i> Esenciales del usuario</div>
+                        <i class="fas fa-user blue"></i> <span>Esenciales del usuario</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="accordion-content">
                         <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
-                        <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu número de DNI o correo registrado.</p>
+                        <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu DNI o correo registrado.</p>
                         <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
                         <p>Ve a Autogestión → “Actualizar mis datos” → verifica tu identidad con código OTP y actualiza el correo.</p>
                     </div>
@@ -274,34 +168,33 @@
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <div class="card-left"><i class="fas fa-sitemap gold"></i> Esenciales de la organización</div>
+                        <i class="fas fa-building gold"></i> <span>Esenciales de la organización</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="accordion-content">
                         <p><strong>¿Cómo autorizo a un nuevo usuario en mi empresa?</strong></p>
                         <p>El administrador principal debe ir a “Gestión de Usuarios” → Agregar colaborador → ingresar DNI y asignar permisos.</p>
                         <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
-                        <p>El administrador debe desactivar o eliminar el usuario desde la misma sección para revocar el acceso inmediatamente.</p>
+                        <p>El administrador debe desactivar o eliminar el usuario para revocar el acceso inmediatamente.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Autogestión -->
             <div>
-                <h2 class="section-title"><i class="fas fa-cog" style="color:#34495e"></i> Autogestión</h2>
+                <h2 class="section-title"><i class="fas fa-cog"></i> Autogestión</h2>
                 
                 <div class="card-item" onclick="abrirModal('Reiniciar clave de Corebank')">
-                    <div class="card-left"><i class="fas fa-key gold"></i> Reiniciar mi clave de Corebank</div>
+                    <i class="fas fa-key gold"></i> <span>Reiniciar mi clave de Corebank</span>
                     <i class="fas fa-arrow-right blue"></i>
                 </div>
                 
                 <div class="card-item" onclick="abrirModal('Recuperar correo electrónico')">
-                    <div class="card-left"><i class="fas fa-envelope red"></i> Recuperar mi correo electrónico</div>
+                    <i class="fas fa-envelope red"></i> <span>Recuperar mi correo electrónico</span>
                     <i class="fas fa-arrow-right blue"></i>
                 </div>
                 
                 <div class="card-item" onclick="abrirModal('Simuladores de Créditos')">
-                    <div class="card-left"><i class="fas fa-calculator blue"></i> Simuladores de Créditos</div>
+                    <i class="fas fa-calculator blue"></i> <span>Simuladores de Créditos</span>
                     <i class="fas fa-arrow-right blue"></i>
                 </div>
             </div>
@@ -312,51 +205,38 @@
         </a>
     </div>
 
-    <!-- Modal -->
     <div class="modal-bg" id="miModal">
         <div class="modal-box">
             <div class="check-square"><i class="fas fa-check"></i></div>
             <h2>¡Solicitud iniciada!</h2>
-            <p id="modal-text">Estamos procesando tu solicitud de forma inmediata.</p>
+            <p id="modal-text">Estamos procesando tu solicitud...</p>
             <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // Acordeones
         document.addEventListener('DOMContentLoaded', function() {
-            const items = document.querySelectorAll('.accordion-item');
-            items.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                header.addEventListener('click', () => {
-                    item.classList.toggle('active');
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
                 });
             });
         });
 
-        // Modal
         function abrirModal(tipo) {
             const modal = document.getElementById('miModal');
             const text = document.getElementById('modal-text');
-            
             if (tipo.includes('Llamada')) {
-                text.innerHTML = 'Conectando con un agente...<br><small>En menos de 30 segundos (simulación)</small>';
+                text.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
             } else {
                 text.innerHTML = `Estamos procesando: <strong>${tipo}</strong>`;
             }
-            
             modal.style.display = 'flex';
         }
 
         function cerrarModal() {
             document.getElementById('miModal').style.display = 'none';
         }
-
-        // Cerrar modal al hacer clic fuera
-        window.addEventListener('click', function(e) {
-            const modal = document.getElementById('miModal');
-            if (e.target === modal) cerrarModal();
-        });
     </script>
 </body>
 </html>
