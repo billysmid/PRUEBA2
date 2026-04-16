@@ -167,30 +167,51 @@
     <!-- Modal (tu modal actual) -->
 
     <script>
-        // Script movido al final y simplificado
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Script cargado - Acordeones inicializados"); // para depurar
+    // Acordeones
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("✅ Script cargado correctamente");
 
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const item = this.parentElement;
-                    item.classList.toggle('active');
-                });
+        const headers = document.querySelectorAll('.accordion-header');
+        
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
             });
         });
+    });
 
-        function abrirModal(tipo) {
-            const modal = document.getElementById('miModal');
-            const text = document.getElementById('modal-text');
-            text.innerHTML = tipo.includes('Llamada') 
-                ? 'Conectando con un agente...<br><small>Simulación activa</small>' 
-                : `Estamos procesando: <strong>${tipo}</strong>`;
-            modal.style.display = 'flex';
+    // Modal - Versión corregida y segura
+    function abrirModal(tipo) {
+        const modal = document.getElementById('miModal');
+        const text = document.getElementById('modal-text');
+        
+        if (!modal || !text) {
+            console.error("Modal no encontrado");
+            return;
         }
 
-        function cerrarModal() {
-            document.getElementById('miModal').style.display = 'none';
+        if (tipo && tipo.includes('Llamada')) {
+            text.innerHTML = 'Conectando con un agente...<br><small>En menos de 30 segundos (simulación)</small>';
+        } else {
+            text.innerHTML = `Estamos procesando: <strong>${tipo || 'tu solicitud'}</strong>`;
         }
-    </script>
+        
+        modal.style.display = 'flex';
+    }
+
+    function cerrarModal() {
+        const modal = document.getElementById('miModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    // Cerrar modal al hacer clic fuera
+    window.addEventListener('click', function(e) {
+        const modal = document.getElementById('miModal');
+        if (e.target === modal) {
+            cerrarModal();
+        }
+    });
+</script>
 </body>
 </html>
