@@ -3,251 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de Ayuda - Dashboard</title>
+    <title>Mesa de Ayuda - Caja Los Andes</title>
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* 1. CONFIGURACIÓN BASE Y RESET */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --sidebar-width: 260px;
-            --topnav-height: 70px;
-            --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
-            --bg-light: #f4f7fe;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-light);
-            height: 100vh;
-            display: flex; /* ESTO DIVIDE SIDEBAR DE CONTENIDO */
-            overflow: hidden;
-        }
-
-        /* 2. SIDEBAR (FIJO A LA IZQUIERDA) */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: #1e293b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0; /* Evita que se encoja */
-            z-index: 100;
-        }
-
-        .sidebar-logo {
-            padding: 25px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: #0f172a;
-            text-align: center;
-        }
-
-        .nav-menu {
-            padding-top: 20px;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #94a3b8;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: #334155;
-            color: white;
-            border-left: 5px solid #4481eb;
-        }
-
-        /* 3. LADO DERECHO (TOPNAV + CONTENIDO) */
-        .main-wrapper {
-            flex-grow: 1; /* Ocupa todo el resto de la pantalla */
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* TOPNAV (FIJO ARRIBA) */
-        .topnav {
-            height: var(--topnav-height);
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            flex-shrink: 0;
-        }
-
-        /* 4. ÁREA DE MESA DE AYUDA (CON SCROLL) */
-        .content-scrollable {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-bottom: 50px;
-        }
-
-        .hero {
-            background: var(--blue-gradient);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .hero h1 { font-size: 2.5rem; margin: 10px 0; }
-
-        .container {
-            max-width: 1000px;
-            margin: -40px auto 0; /* Sube para entrar en el hero */
-            padding: 0 20px;
-        }
-
-        .search-bar {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 20px 20px 20px 60px;
-            border-radius: 50px;
-            border: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            outline: none;
-            font-size: 1.1rem;
-        }
-
-        .search-bar i {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #4481eb;
-            font-size: 1.4rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .card-box {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .card-title {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            color: #2c3e50;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #f0f0f0;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .item:hover {
-            border-color: #4481eb;
-            background: #f8fbff;
-        }
-
-        .btn-call {
-            background: #1e3a8a;
-            color: white;
-            width: 100%;
-            padding: 20px;
-            border-radius: 50px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            margin-top: 30px;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .grid { grid-template-columns: 1fr; }
-            .sidebar { width: 70px; }
-            .sidebar span, .sidebar-logo { display: none; }
-        }
-    </style>
 </head>
 <body>
-
-    <aside class="sidebar">
-        <div class="sidebar-logo">COREBANK</div>
-        <nav class="nav-menu">
-            <a href="#" class="nav-item"><i class="fas fa-home"></i> <span>Dashboard</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-wallet"></i> <span>Cuentas</span></a>
-            <a href="#" class="nav-item active"><i class="fas fa-headset"></i> <span>Mesa de Ayuda</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-user-cog"></i> <span>Perfil</span></a>
+    <div class="root-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo_web.png" alt="Caja Los Andes" class="sidebar-logo-img">
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="dashboard.html">Inicio</a></li>
+                <li class="menu-item"><a href="capacitaciones.html">Capacitaciones</a></li>
+                <li class="menu-item"><a href="videos.html">Videos</a></li>
+                <li class="menu-item"><a href="herramientas.html">Herramientas</a></li>
+                <li class="menu-item active"><a href="Mesadeayuda.html">Mesa de ayuda</a></li>
+            </ul>
         </nav>
-    </aside>
 
-    <div class="main-wrapper">
-        
-        <header class="topnav">
-            <div style="color: #64748b;"><i class="fas fa-bars"></i></div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-weight: 600;">Usuario Premium</span>
-                <img src="https://ui-avatars.com/api/?name=U&background=4481eb&color=fff" style="width: 35px; border-radius: 50%;">
-            </div>
-        </header>
+        <main class="main-content">
+            <nav class="top-nav">
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="dashboard.html">DASHBOARD</a></li>
+                    <li class="nav-item"><a href="capacitaciones.html">MIS CAPACITACIONES</a></li>
+                    <li class="nav-item"><a href="beneficios.html">BENEFICIOS</a></li>
+                </ul>
 
-        <main class="content-scrollable">
-            
-            <section class="hero">
-                <i class="fas fa-headphones-alt" style="font-size: 60px;"></i>
-                <h1>Mesa de Ayuda</h1>
-                <p>Tu soporte siempre disponible</p>
-            </section>
-
-            <div class="container">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="¿En qué te podemos ayudar hoy?">
+                <div class="header-profile" id="user-profile-block">
+                    <div class="profile-img-container"></div>
+                    <div class="profile-text">
+                        <span class="profile-handle" id="user-handle">@usuario</span>
+                        <span class="profile-name" id="user-display-name">Cargando...</span>
+                    </div>
+                    <i class="arrow-down">▼</i>
                 </div>
+            </nav>
 
-                <div class="grid">
-                    <div class="card-box">
-                        <h3 class="card-title"><i class="fas fa-question-circle" style="color:#e74c3c;"></i> Preguntas Frecuentes</h3>
-                        <div class="item"><span>Esenciales del negocio</span> <i class="fas fa-chevron-down"></i></div>
-                        <div class="item"><span>Esenciales del usuario</span> <i class="fas fa-chevron-down"></i></div>
-                        <div class="item"><span>Esenciales de la organización</span> <i class="fas fa-chevron-down"></i></div>
+            <div class="content-body">
+                <h2 class="category-label">Mesa de Ayuda</h2>
+
+                <div style="max-width:1100px; margin:0 auto;">
+                    <div class="hero" style="background: linear-gradient(90deg, #4481eb, #04befe); color:white; padding:50px; border-radius:12px; text-align:center; margin-bottom:40px;">
+                        <i class="fas fa-headset" style="font-size:60px; margin-bottom:15px;"></i>
+                        <h1>Mesa de Ayuda</h1>
+                        <p>Tu soporte siempre disponible</p>
                     </div>
 
-                    <div class="card-box">
-                        <h3 class="card-title"><i class="fas fa-cog" style="color:#64748b;"></i> Autogestión</h3>
-                        <div class="item"><span>Reiniciar mi clave</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
-                        <div class="item"><span>Recuperar correo</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
-                        <div class="item"><span>Simuladores de Créditos</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
+                    <p style="text-align:center; color:#666; margin-bottom:40px;">
+                        Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.
+                    </p>
+
+                    <div class="search-bar" style="max-width:650px; margin:0 auto 60px; position:relative;">
+                        <input type="text" id="searchInput" placeholder="¿En qué te podemos ayudar hoy?">
+                        <i class="fas fa-search"></i>
                     </div>
+
+                    <div class="grid">
+                        <div>
+                            <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-briefcase brown"></i> Esenciales del negocio</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
+                                    <p>Ingresa con tu usuario temporal. El sistema te pedirá crear una clave de 8 caracteres (números + letras). Confírmala y listo.</p>
+                                    <p><strong>¿Cómo veo mis saldos y movimientos?</strong></p>
+                                    <p>Desde el Dashboard principal → sección “Mis Cuentas”. Puedes filtrar por fecha o descargar el estado de cuenta en PDF.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-user blue"></i> Esenciales del usuario</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
+                                    <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu DNI o correo registrado.</p>
+                                    <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
+                                    <p>Ve a Autogestión → “Actualizar mis datos” → verifica tu identidad con código OTP y actualiza el correo.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-sitemap gold"></i> Esenciales de la organización</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>¿Cómo autorizo a un nuevo usuario en mi empresa?</strong></p>
+                                    <p>El administrador principal debe ir a “Gestión de Usuarios” → Agregar colaborador → ingresar DNI y asignar permisos.</p>
+                                    <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
+                                    <p>El administrador debe desactivar o eliminar el usuario desde la misma sección para revocar el acceso inmediatamente.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 class="section-title"><i class="fas fa-cog" style="color:#34495e"></i> Autogestión</h2>
+                            
+                            <div class="card-item" onclick="abrirModal('Reiniciar clave de Corebank')">
+                                <div class="card-left"><i class="fas fa-key gold"></i> Reiniciar mi clave de Corebank</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
+                            
+                            <div class="card-item" onclick="abrirModal('Recuperar correo electrónico')">
+                                <div class="card-left"><i class="fas fa-envelope red"></i> Recuperar mi correo electrónico</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
+                            
+                            <div class="card-item" onclick="abrirModal('Simuladores de Créditos')">
+                                <div class="card-left"><i class="fas fa-calculator blue"></i> Simuladores de Créditos</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
+                        <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
+                    </a>
                 </div>
-
-                <a href="#" class="btn-call"><i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda</a>
             </div>
-
         </main>
     </div>
 
+    <div class="modal-bg" id="miModal">
+        <div class="modal-box">
+            <div class="check-square"><i class="fas fa-check"></i></div>
+            <h2>¡Solicitud iniciada!</h2>
+            <p id="modal-text">Estamos procesando tu solicitud...</p>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function actualizarUsuario(nombre, handle) {
+            document.getElementById('user-display-name').textContent = nombre;
+            document.getElementById('user-handle').textContent = handle;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+        });
+
+        function abrirModal(tipo) {
+            const modal = document.getElementById('miModal');
+            const text = document.getElementById('modal-text');
+            if (tipo.includes('Llamada')) {
+                text.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
+            } else {
+                text.innerHTML = `Estamos procesando: <strong>${tipo}</strong>`;
+            }
+            modal.style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        window.onload = function() {
+            actualizarUsuario("Niurka Obregon", "@obregonsalhuananiurka");
+        };
+    </script>
 </body>
 </html>
