@@ -36,15 +36,15 @@ body {
     font-size: 3rem;
     color: #f1c40f;
 }
-/* 1. Variables y Reset */
+/* 1. Reset y Variables de Color */
 :root {
-    --primary-blue: #4a90e2;
-    --dark-blue: #1c52a3;
-    --text-color: #333;
-    --gray-bg: #f4f7f6;
+    --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+    --bg-light: #f9fbff;
+    --text-main: #33475b;
+    --text-muted: #7c98b6;
     --white: #ffffff;
-    --success-green: #2ecc71;
-    --transition: all 0.3s ease;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
@@ -54,327 +54,211 @@ body {
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     background-color: var(--white);
-    color: var(--text-color);
-    line-height: 1.6;
+    color: var(--text-main);
 }
 
-/* 2. Header con Degradado Curvo */
-.header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-    color: white;
+/* 2. Banner Superior (Hero Section) */
+.hero-banner {
+    background: var(--blue-gradient);
     padding: 60px 20px;
     text-align: center;
-    clip-path: ellipse(150% 100% at 50% 0%); /* Crea la curva del video */
+    color: white;
 }
 
-.header h1 {
-    font-size: 2.8rem;
-    font-weight: 600;
-    margin-bottom: 10px;
+.hero-banner h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
-.header p {
+.hero-banner p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
-/* 3. Contenedor y Buscador */
-.container {
+/* 3. Contenedor Principal */
+.main-wrapper {
     max-width: 1100px;
-    margin: -40px auto 50px;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.search-box {
-    background: var(--white);
-    border-radius: 50px;
-    padding: 5px;
-    display: flex;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    max-width: 700px;
-    margin: 0 auto 40px;
+.description {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.search-box input {
+/* 4. Buscador Estilizado */
+.search-container {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto 60px;
+}
+
+.search-container input {
     width: 100%;
-    padding: 15px 25px;
-    border: none;
-    outline: none;
+    padding: 18px 30px;
     border-radius: 50px;
+    border: 1px solid #e1e8f0;
+    box-shadow: var(--shadow);
     font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
 }
 
-/* 4. Grid Principal */
-.main-grid {
+.search-container input:focus {
+    border-color: #4481eb;
+    box-shadow: 0 6px 25px rgba(68, 129, 235, 0.15);
+}
+
+.search-container i {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4481eb;
+    font-size: 1.2rem;
+}
+
+/* 5. Grid de Secciones */
+.grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-top: 40px;
+    gap: 60px;
 }
 
-.section-title {
-    font-size: 1.4rem;
-    margin-bottom: 25px;
+.section-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
+    margin-bottom: 30px;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
-/* 5. Estilo de las Opciones (Cards) */
-.option-card {
-    background: var(--white);
-    border: 1px solid #e1e4e8;
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin-bottom: 15px;
+/* 6. Filas de Opciones (Listas) */
+.list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: var(--white);
+    border: 1px solid #f0f3f7;
     cursor: pointer;
     transition: var(--transition);
 }
 
-.option-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
-    border-color: var(--primary-blue);
+.list-item:hover {
+    background-color: var(--bg-light);
+    transform: translateX(5px);
+    border-color: #4481eb;
 }
 
-.card-left {
+.item-left {
     display: flex;
     align-items: center;
     gap: 15px;
+    font-weight: 500;
 }
 
-.card-left i {
-    font-size: 1.3rem;
-    color: #555;
-    width: 30px;
+.item-left i {
+    font-size: 1.4rem;
+    width: 25px;
     text-align: center;
 }
 
-.arrow-icon {
-    color: #ccc;
-    font-size: 0.9rem;
-}
+/* Colores de iconos específicos como en el video */
+.icon-red { color: #e74c3c; }
+.icon-blue { color: #3498db; }
+.icon-gold { color: #f1c40f; }
+.icon-brown { color: #a35d22; }
 
-/* 6. Botón de Llamada */
-.btn-call-full {
+/* 7. Botón "Llamar" */
+.btn-primary-call {
     grid-column: span 2;
-    background-color: #2c3e50;
+    background: #1e3a8a;
     color: white;
     padding: 20px;
     border-radius: 50px;
     text-align: center;
-    font-weight: bold;
     text-decoration: none;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
+    gap: 10px;
+    margin-top: 20px;
     transition: var(--transition);
 }
 
-.btn-call-full:hover {
-    background-color: #1a252f;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+.btn-primary-call:hover {
+    background: #162a63;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* 7. Modal (Ventana Emergente) */
+/* 8. Ventana Modal (Popup de éxito) */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none; /* Se activa con JS */
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: none; /* Controlado por JS */
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(3px);
+    z-index: 1000;
 }
 
-.modal-box {
+.modal-content {
     background: var(--white);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 24px;
     text-align: center;
-    max-width: 450px;
     width: 90%;
-    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 420px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: modalScale 0.3s ease-out;
 }
 
-@keyframes popIn {
-    from { transform: scale(0.8); opacity: 0; }
+@keyframes modalScale {
+    from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-.success-circle {
-    width: 80px;
-    height: 80px;
-    background: var(--success-green);
+.checkmark-container {
+    width: 70px;
+    height: 70px;
+    background: #27ae60;
     color: white;
-    font-size: 40px;
-    border-radius: 50%;
+    border-radius: 8px; /* Cuadrado redondeado como en el video */
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-}
-
-.btn-modal-close {
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 12px 40px;
-    border-radius: 8px;
-    margin-top: 25px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-/* 8. Adaptabilidad Móvil */
-@media (max-width: 800px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-    .btn-call-full {
-        grid-column: 1;
-    }
-    .header h1 { font-size: 2rem; }
-}
-
-.hero-banner h1 { margin: 0; font-size: 1.8rem; }
-.hero-banner p { margin: 5px 0 0; opacity: 0.9; }
-
-.intro-text {
-    text-align: center;
-    margin: 30px 0;
-    color: var(--gray-text);
-}
-
-/* Buscador */
-.search-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
-.search-box {
-    display: flex;
-    width: 100%;
-    max-width: 600px;
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 30px;
-    padding: 5px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.search-box input {
-    border: none;
-    flex-grow: 1;
-    padding: 10px;
-    outline: none;
-    font-size: 1rem;
-}
-
-.search-box button {
-    border: none;
-    background: none;
-    color: var(--primary-blue);
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-
-/* Layout Grid */
-.main-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-h2 {
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* Acordeón y Listas */
-.accordion-item, .action-item {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.action-item { border: none; background: transparent; border-bottom: 1px solid #eee; border-radius: 0; }
-.action-item:hover { background-color: #f5f5f5; }
-
-.accordion-header {
-    background: none; border: none; width: 100%; text-align: left;
-    display: flex; justify-content: space-between; font-size: 1rem;
-}
-
-/* Botón Llamar */
-.btn-call {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-/* Modales */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    justify-content: center; align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-}
-
-.success-icon {
-    background: #4caf50;
-    color: white;
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    margin: 0 auto 15px;
-    font-size: 2rem;
+    font-size: 35px;
 }
 
 .btn-close {
-    background: var(--primary-blue);
-    color: white; border: none; padding: 10px 30px;
-    border-radius: 5px; cursor: pointer;
+    margin-top: 25px;
+    padding: 12px 35px;
+    border-radius: 8px;
+    border: none;
+    background: #4481eb;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-/* Colores de Iconos */
-.red-icon { color: #e74c3c; }
-.gold-icon { color: #f1c40f; }
-.blue-icon { color: #3498db; }
+/* 9. Mobile Responsive */
+@media (max-width: 768px) {
+    .grid-layout { grid-template-columns: 1fr; gap: 30px; }
+    .btn-primary-call { grid-column: 1; }
+    .hero-banner h1 { font-size: 1.8rem; }
+}
