@@ -3,155 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Soporte</title>
+    <title>Mesa de Ayuda - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* RESET BÁSICO */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* 1. CONFIGURACIÓN BASE Y RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            display: flex; /* ESTO ES LO QUE MANTIENE EL SIDEBAR AL LADO */
-            height: 100vh;
-            background-color: #f4f7fe;
-            overflow: hidden; /* Evita que toda la página tenga scroll */
+        :root {
+            --sidebar-width: 260px;
+            --topnav-height: 70px;
+            --blue-gradient: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+            --bg-light: #f4f7fe;
         }
 
-        /* SIDEBAR IZQUIERDO */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            height: 100vh;
+            display: flex; /* ESTO DIVIDE SIDEBAR DE CONTENIDO */
+            overflow: hidden;
+        }
+
+        /* 2. SIDEBAR (FIJO A LA IZQUIERDA) */
         .sidebar {
-            width: 260px;
+            width: var(--sidebar-width);
             background: #1e293b;
             color: white;
             display: flex;
             flex-direction: column;
-            flex-shrink: 0; /* Evita que el sidebar se encoja */
+            flex-shrink: 0; /* Evita que se encoja */
+            z-index: 100;
         }
 
-        .sidebar-brand {
+        .sidebar-logo {
             padding: 25px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: bold;
             background: #0f172a;
+            text-align: center;
         }
 
-        .sidebar-menu {
-            padding: 20px 0;
+        .nav-menu {
+            padding-top: 20px;
+            flex-grow: 1;
         }
 
-        .menu-link {
+        .nav-item {
             padding: 15px 25px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             color: #94a3b8;
             text-decoration: none;
             transition: 0.3s;
         }
 
-        .menu-link:hover, .menu-link.active {
+        .nav-item:hover, .nav-item.active {
             background: #334155;
             color: white;
             border-left: 5px solid #4481eb;
         }
 
-        /* CONTENEDOR DE LA DERECHA */
-        .main-content {
-            flex-grow: 1; /* Ocupa todo el espacio restante */
+        /* 3. LADO DERECHO (TOPNAV + CONTENIDO) */
+        .main-wrapper {
+            flex-grow: 1; /* Ocupa todo el resto de la pantalla */
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
-        /* TOPNAV SUPERIOR */
+        /* TOPNAV (FIJO ARRIBA) */
         .topnav {
-            height: 70px;
+            height: var(--topnav-height);
             background: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            z-index: 10;
+            flex-shrink: 0;
         }
 
-        /* CONTENIDO DE MESA DE AYUDA CON SCROLL PROPIO */
-        .view-container {
+        /* 4. ÁREA DE MESA DE AYUDA (CON SCROLL) */
+        .content-scrollable {
             flex-grow: 1;
-            overflow-y: auto; /* Solo esta parte tiene scroll */
+            overflow-y: auto;
+            padding-bottom: 50px;
         }
 
-        .hero-banner {
-            background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+        .hero {
+            background: var(--blue-gradient);
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
-        .help-content {
+        .hero h1 { font-size: 2.5rem; margin: 10px 0; }
+
+        .container {
             max-width: 1000px;
-            margin: -30px auto 50px; /* Sube un poco para entrar en el hero */
+            margin: -40px auto 0; /* Sube para entrar en el hero */
             padding: 0 20px;
         }
 
-        .search-box {
+        .search-bar {
             position: relative;
             margin-bottom: 40px;
         }
 
-        .search-box input {
+        .search-bar input {
             width: 100%;
-            padding: 18px 50px;
+            padding: 20px 20px 20px 60px;
             border-radius: 50px;
             border: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             outline: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
-        .search-box i {
+        .search-bar i {
             position: absolute;
-            left: 20px;
+            left: 25px;
             top: 50%;
             transform: translateY(-50%);
             color: #4481eb;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
 
-        /* GRID DE OPCIONES */
-        .help-grid {
+        .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
 
-        .card-section {
+        .card-box {
             background: white;
             padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .section-title {
+        .card-title {
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #334155;
+            font-size: 1.2rem;
+            color: #2c3e50;
         }
 
-        .item-row {
-            padding: 15px;
-            border: 1px solid #f1f5f9;
-            border-radius: 12px;
-            margin-bottom: 10px;
+        .item {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: 0.2s;
         }
 
-        .item-row:hover {
+        .item:hover {
             border-color: #4481eb;
             background: #f8fbff;
         }
@@ -159,78 +172,81 @@
         .btn-call {
             background: #1e3a8a;
             color: white;
-            padding: 18px;
+            width: 100%;
+            padding: 20px;
             border-radius: 50px;
             text-align: center;
             text-decoration: none;
             display: block;
             margin-top: 30px;
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
+        /* RESPONSIVE */
         @media (max-width: 900px) {
-            .help-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
             .sidebar { width: 70px; }
-            .sidebar span, .sidebar-brand { display: none; }
+            .sidebar span, .sidebar-logo { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-brand">COREBANK</div>
-        <div class="sidebar-menu">
-            <a href="#" class="menu-link"><i class="fas fa-home"></i> <span>Inicio</span></a>
-            <a href="#" class="menu-link"><i class="fas fa-wallet"></i> <span>Mis Cuentas</span></a>
-            <a href="#" class="menu-link active"><i class="fas fa-headset"></i> <span>Mesa de Ayuda</span></a>
-            <a href="#" class="menu-link"><i class="fas fa-history"></i> <span>Movimientos</span></a>
-        </div>
-    </div>
+    <aside class="sidebar">
+        <div class="sidebar-logo">COREBANK</div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+            <a href="#" class="nav-item"><i class="fas fa-wallet"></i> <span>Cuentas</span></a>
+            <a href="#" class="nav-item active"><i class="fas fa-headset"></i> <span>Mesa de Ayuda</span></a>
+            <a href="#" class="nav-item"><i class="fas fa-user-cog"></i> <span>Perfil</span></a>
+        </nav>
+    </aside>
 
-    <div class="main-content">
+    <div class="main-wrapper">
         
-        <div class="topnav">
-            <div class="left">
-                <i class="fas fa-bars" style="color: #64748b; cursor:pointer;"></i>
+        <header class="topnav">
+            <div style="color: #64748b;"><i class="fas fa-bars"></i></div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-weight: 600;">Usuario Premium</span>
+                <img src="https://ui-avatars.com/api/?name=U&background=4481eb&color=fff" style="width: 35px; border-radius: 50%;">
             </div>
-            <div class="user" style="display:flex; align-items:center; gap:10px;">
-                <span style="font-weight: 600; color: #334155;">Hola, Maria</span>
-                <img src="https://ui-avatars.com/api/?name=M&background=4481eb&color=fff" style="width:35px; border-radius:50%;">
-            </div>
-        </div>
+        </header>
 
-        <div class="view-container">
-            <div class="hero-banner">
-                <i class="fas fa-headphones-alt" style="font-size: 50px; margin-bottom: 15px;"></i>
+        <main class="content-scrollable">
+            
+            <section class="hero">
+                <i class="fas fa-headphones-alt" style="font-size: 60px;"></i>
                 <h1>Mesa de Ayuda</h1>
                 <p>Tu soporte siempre disponible</p>
-            </div>
+            </section>
 
-            <div class="help-content">
-                <div class="search-box">
+            <div class="container">
+                <div class="search-bar">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="¿En qué te podemos ayudar hoy?">
                 </div>
 
-                <div class="help-grid">
-                    <div class="card-section">
-                        <h3 class="section-title"><i class="fas fa-question-circle" style="color:#e74c3c;"></i> Preguntas Frecuentes</h3>
-                        <div class="item-row"><span>Esenciales del negocio</span> <i class="fas fa-chevron-down"></i></div>
-                        <div class="item-row"><span>Esenciales del usuario</span> <i class="fas fa-chevron-down"></i></div>
-                        <div class="item-row"><span>Esenciales de la organización</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="grid">
+                    <div class="card-box">
+                        <h3 class="card-title"><i class="fas fa-question-circle" style="color:#e74c3c;"></i> Preguntas Frecuentes</h3>
+                        <div class="item"><span>Esenciales del negocio</span> <i class="fas fa-chevron-down"></i></div>
+                        <div class="item"><span>Esenciales del usuario</span> <i class="fas fa-chevron-down"></i></div>
+                        <div class="item"><span>Esenciales de la organización</span> <i class="fas fa-chevron-down"></i></div>
                     </div>
 
-                    <div class="card-section">
-                        <h3 class="section-title"><i class="fas fa-cog" style="color:#64748b;"></i> Autogestión</h3>
-                        <div class="item-row"><span>Reiniciar mi clave</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
-                        <div class="item-row"><span>Recuperar correo</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
-                        <div class="item-row"><span>Simuladores de Créditos</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
+                    <div class="card-box">
+                        <h3 class="card-title"><i class="fas fa-cog" style="color:#64748b;"></i> Autogestión</h3>
+                        <div class="item"><span>Reiniciar mi clave</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
+                        <div class="item"><span>Recuperar correo</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
+                        <div class="item"><span>Simuladores de Créditos</span> <i class="fas fa-arrow-right" style="color:#4481eb;"></i></div>
                     </div>
                 </div>
 
                 <a href="#" class="btn-call"><i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda</a>
             </div>
-        </div>
+
+        </main>
     </div>
 
 </body>
