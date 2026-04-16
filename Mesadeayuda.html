@@ -8,13 +8,9 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-        }
-
-        /* TOP BAR - Igual que en las otras páginas */
+        /* TOP BAR */
         .top-bar {
             height: 70px;
             background: white;
@@ -23,138 +19,38 @@
             justify-content: space-between;
             padding: 0 30px;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00a1e0;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            font-size: 32px;
-            margin-right: 6px;
-        }
-
-        .nav-links a {
-            margin: 0 25px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #00a1e0;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo { font-size: 24px; font-weight: bold; color: #00a1e0; display: flex; align-items: center; }
+        .logo span { font-size: 32px; margin-right: 6px; }
+        .nav-links a { margin: 0 25px; text-decoration: none; color: #333; font-weight: 500; }
+        .nav-links a:hover { color: #00a1e0; }
+        .user-info { display: flex; align-items: center; gap: 12px; }
         .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: #00a1e0;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+            width: 40px; height: 40px; background: #00a1e0; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
         }
 
-        /* SIDEBAR - Igual que en las otras páginas */
+        /* SIDEBAR */
         .sidebar {
-            width: 260px;
-            background: #00a1e0;
-            color: white;
-            position: fixed;
-            top: 70px;
-            bottom: 0;
-            left: 0;
-            padding-top: 30px;
+            width: 260px; background: #00a1e0; color: white;
+            position: fixed; top: 70px; bottom: 0; left: 0; padding-top: 30px;
         }
-
         .sidebar a {
-            display: block;
-            padding: 15px 30px;
-            color: white;
-            text-decoration: none;
-            font-size: 1.05rem;
+            display: block; padding: 15px 30px; color: white; text-decoration: none; font-size: 1.05rem;
         }
+        .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.2); }
 
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: rgba(255,255,255,0.2);
-        }
-
-        /* CONTENIDO PRINCIPAL */
+        /* MAIN CONTENT */
         .main-content {
-            margin-left: 260px;
-            margin-top: 70px;
-            padding: 40px;
+            margin-left: 260px; margin-top: 70px; padding: 40px;
         }
 
-        /* ==================== CONTENIDO DE MESA DE AYUDA ==================== */
         .hero {
             background: linear-gradient(90deg, #4481eb, #04befe);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .search-bar {
-            max-width: 680px;
-            margin: 0 auto 50px;
-            position: relative;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 16px 20px 16px 55px;
-            border-radius: 50px;
-            border: 1px solid #ddd;
-            font-size: 1.05rem;
-        }
-
-        .search-bar i {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Resto de estilos para acordeones, tarjetas y modal (puedes agregar más si quieres) */
-
-        @media (max-width: 992px) {
-            .sidebar { width: 220px; }
-            .main-content { margin-left: 220px; }
+            color: white; padding: 50px 40px; border-radius: 12px; text-align: center; margin-bottom: 40px;
         }
     </style>
 </head>
@@ -162,9 +58,7 @@
 
     <!-- TOP BAR -->
     <header class="top-bar">
-        <div class="logo">
-            <span>A</span> LOS ANDES
-        </div>
+        <div class="logo"><span>A</span> LOS ANDES</div>
         <div class="nav-links">
             <a href="dashboard.html">DASHBOARD</a>
             <a href="capacitaciones.html">MIS CAPACITACIONES</a>
@@ -188,7 +82,7 @@
         <a href="Mesadeayuda.html" class="active">Mesa de ayuda</a>
     </nav>
 
-    <!-- CONTENIDO -->
+    <!-- CONTENIDO DE MESA DE AYUDA -->
     <main class="main-content">
         <div class="hero">
             <i class="fas fa-headset" style="font-size: 55px; margin-bottom: 15px;"></i>
@@ -200,23 +94,23 @@
             Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.
         </p>
 
-        <div class="search-bar">
-            <input type="text" placeholder="¿En qué te podemos ayudar hoy?">
-            <i class="fas fa-search"></i>
+        <div style="max-width:680px; margin:0 auto 50px; position:relative;">
+            <input type="text" placeholder="¿En qué te podemos ayudar hoy?" style="width:100%; padding:16px 20px 16px 55px; border-radius:50px; border:1px solid #ddd; font-size:1.05rem;">
+            <i class="fas fa-search" style="position:absolute; left:25px; top:50%; transform:translateY(-50%); color:#666;"></i>
         </div>
 
-        <div class="grid">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
             <div>
-                <h2 class="section-title"><i class="fas fa-question-circle" style="color:#e74c3c"></i> Preguntas Frecuentes</h2>
-                <!-- Aquí puedes poner los acordeones si quieres -->
+                <h2 style="font-size:1.6rem; margin-bottom:20px;"><i class="fas fa-question-circle" style="color:#e74c3c"></i> Preguntas Frecuentes</h2>
+                <!-- Aquí irán los acordeones más adelante -->
             </div>
             <div>
-                <h2 class="section-title"><i class="fas fa-cog"></i> Autogestión</h2>
-                <!-- Aquí las tarjetas de autogestión -->
+                <h2 style="font-size:1.6rem; margin-bottom:20px;"><i class="fas fa-cog"></i> Autogestión</h2>
+                <!-- Aquí irán las tarjetas -->
             </div>
         </div>
 
-        <button style="width:100%; padding:18px; background:#1e3a8a; color:white; border:none; border-radius:50px; margin-top:40px; font-size:1.1rem;">
+        <button style="width:100%; padding:18px; background:#1e3a8a; color:white; border:none; border-radius:50px; margin-top:40px; font-size:1.1rem; cursor:pointer;">
             <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
         </button>
     </main>
