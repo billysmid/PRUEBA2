@@ -3,97 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de Ayuda</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mesa de Ayuda - Diseño Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="hero-banner">
-        <div class="container">
-            <div class="logo-section">
-                <i class="fas fa-ghost logo-icon"></i>
-                <div>
-                    <h1>Mesa de Ayuda</h1>
-                    <p>Tu soporte siempre disponible</p>
-                </div>
-            </div>
+        <div class="logo-container">
+            <i class="fas fa-headset" style="font-size: 40px; color: #f1c40f;"></i>
         </div>
+        <h1>Mesa de Ayuda</h1>
+        <p>Tu soporte siempre disponible</p>
     </header>
 
-    <main class="container">
-        <p class="intro-text">
+    <div class="main-wrapper">
+        <p class="description">
             Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.
         </p>
 
         <div class="search-container">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="¿En qué te podemos ayudar hoy? Escribe tu duda...">
-                <button onclick="searchFunction()"><i class="fas fa-search"></i></button>
-            </div>
+            <input type="text" placeholder="¿En qué te podemos ayudar hoy? Escribe tu duda...">
+            <i class="fas fa-search"></i>
         </div>
 
-        <div class="main-grid">
-            <section class="faq-section">
-                <h2><i class="fas fa-question-circle red-icon"></i> Preguntas Frecuentes</h2>
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span><i class="fas fa-briefcase"></i> Esenciales del negocio</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
+        <div class="grid-layout">
+            <div class="column">
+                <h2 class="section-header"><i class="fas fa-question-circle icon-red"></i> Preguntas Frecuentes</h2>
+                
+                <div class="list-item">
+                    <div class="item-left">
+                        <i class="fas fa-briefcase icon-brown"></i>
+                        <span>Esenciales del negocio</span>
                     </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span><i class="fas fa-user-tie"></i> Esenciales del usuario</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span><i class="fas fa-building"></i> Esenciales de la organización</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                    </div>
-            </section>
-
-            <section class="self-management">
-                <h2><i class="fas fa-cog"></i> Autogestión</h2>
-                <div class="action-list">
-                    <button class="action-item" onclick="showModal('Reiniciar mi clave de Corebank')">
-                        <i class="fas fa-key gold-icon"></i>
-                        <span>Reiniciar mi clave de Corebank</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="action-item" onclick="showModal('Recuperar mi correo electrónico')">
-                        <i class="fas fa-envelope red-icon"></i>
-                        <span>Recuperar mi correo electrónico</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="action-item" onclick="showModal('Simuladores de Créditos')">
-                        <i class="fas fa-calculator blue-icon"></i>
-                        <span>Simuladores de Créditos</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <i class="fas fa-chevron-down arrow-muted"></i>
                 </div>
 
-                <button class="btn-call" onclick="showCallModal()">
-                    <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
-                </button>
-            </section>
-        </div>
-    </main>
+                <div class="list-item">
+                    <div class="item-left">
+                        <i class="fas fa-user icon-blue"></i>
+                        <span>Esenciales del usuario</span>
+                    </div>
+                    <i class="fas fa-chevron-down arrow-muted"></i>
+                </div>
 
-    <div id="modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="success-icon"><i class="fas fa-check"></i></div>
-            <h3>¡Solicitud iniciada!</h3>
-            <p id="modal-text">Estamos procesando...</p>
-            <button class="btn-close" onclick="closeModal()">Cerrar</button>
+                <div class="list-item">
+                    <div class="item-left">
+                        <i class="fas fa-sitemap icon-gold"></i>
+                        <span>Esenciales de la organización</span>
+                    </div>
+                    <i class="fas fa-chevron-down arrow-muted"></i>
+                </div>
+            </div>
+
+            <div class="column">
+                <h2 class="section-header"><i class="fas fa-cog icon-dark"></i> Autogestión</h2>
+                
+                <div class="list-item" onclick="mostrarModal('Reiniciar mi clave de Corebank')">
+                    <div class="item-left">
+                        <i class="fas fa-key icon-gold"></i>
+                        <span>Reiniciar mi clave de Corebank</span>
+                    </div>
+                    <i class="fas fa-arrow-right arrow-blue"></i>
+                </div>
+
+                <div class="list-item" onclick="mostrarModal('Recuperar mi correo electrónico')">
+                    <div class="item-left">
+                        <i class="fas fa-envelope icon-red"></i>
+                        <span>Recuperar mi correo electrónico</span>
+                    </div>
+                    <i class="fas fa-arrow-right arrow-blue"></i>
+                </div>
+
+                <div class="list-item">
+                    <div class="item-left">
+                        <i class="fas fa-calculator icon-blue"></i>
+                        <span>Simuladores de Créditos</span>
+                    </div>
+                    <i class="fas fa-arrow-right arrow-blue"></i>
+                </div>
+            </div>
+
+            <a href="#" class="btn-primary-call" onclick="mostrarModal('Llamar a Mesa de Ayuda')">
+                <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
+            </a>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="modal-overlay" id="modalUniversal">
+        <div class="modal-content">
+            <div class="checkmark-box">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 id="modalTitle">¡Solicitud iniciada!</h2>
+            <p id="modalMsg">Estamos procesando tu solicitud.</p>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function mostrarModal(titulo) {
+            document.getElementById('modalUniversal').style.display = 'flex';
+            if(titulo.includes('Llamar')) {
+                document.getElementById('modalTitle').innerText = "Llamando...";
+            } else {
+                document.getElementById('modalTitle').innerText = "¡Solicitud iniciada!";
+                document.getElementById('modalMsg').innerText = "Procesando: " + titulo;
+            }
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalUniversal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
