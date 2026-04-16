@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de Ayuda - Final</title>
+    <title>Mesa de Ayuda - Caja Los Andes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -82,7 +82,6 @@
             color: #2c3e50;
         }
 
-        /* ==================== ACORDEÓN ==================== */
         .accordion-item {
             margin-bottom: 14px;
             border: 1px solid #eee;
@@ -132,7 +131,6 @@
             transform: rotate(180deg);
         }
 
-        /* Tarjetas de Autogestión */
         .card-item {
             display: flex;
             align-items: center;
@@ -179,7 +177,6 @@
             font-size: 1.1rem;
         }
 
-        /* Modal */
         .modal-bg {
             display: none;
             position: fixed;
@@ -245,11 +242,9 @@
         </div>
 
         <div class="grid">
-            <!-- Preguntas Frecuentes -->
             <div>
                 <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
 
-                <!-- Item 1 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <div class="card-left"><i class="fas fa-briefcase brown"></i> Esenciales del negocio</div>
@@ -263,7 +258,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <div class="card-left"><i class="fas fa-user blue"></i> Esenciales del usuario</div>
@@ -277,7 +271,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
                         <div class="card-left"><i class="fas fa-sitemap gold"></i> Esenciales de la organización</div>
@@ -292,7 +285,6 @@
                 </div>
             </div>
 
-            <!-- Autogestión -->
             <div>
                 <h2 class="section-title"><i class="fas fa-cog" style="color:#34495e"></i> Autogestión</h2>
                 
@@ -311,14 +303,13 @@
                     <i class="fas fa-arrow-right blue"></i>
                 </div>
             </div>
-
-            <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
-                <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
-            </a>
         </div>
+
+        <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
+            <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
+        </a>
     </div>
 
-    <!-- Modal -->
     <div class="modal-bg" id="miModal">
         <div class="modal-box">
             <div class="check-square"><i class="fas fa-check"></i></div>
@@ -329,7 +320,18 @@
     </div>
 
     <script>
-        // Abrir modal con mensaje dinámico
+        // Acordeones
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.accordion-item');
+            items.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // Modal corregido
         function abrirModal(tipo) {
             const modal = document.getElementById('miModal');
             const text = document.getElementById('modal-text');
@@ -337,7 +339,7 @@
             if (tipo.includes('Llamada')) {
                 text.innerHTML = 'Conectando con un agente...<br><small>En menos de 30 segundos (simulación)</small>';
             } else {
-                text.innerHTML = `Estamos procesando: <strong>${tipo}</strong>`;
+                text.innerHTML = Estamos procesando: <strong>${tipo}</strong>;
             }
             
             modal.style.display = 'flex';
@@ -347,22 +349,9 @@
             document.getElementById('miModal').style.display = 'none';
         }
 
-        // Cerrar modal al hacer clic fuera
         window.addEventListener('click', function(e) {
             const modal = document.getElementById('miModal');
             if (e.target === modal) cerrarModal();
-        });
-
-        // Acordeones (click en Preguntas Frecuentes)
-        document.addEventListener('DOMContentLoaded', function() {
-            const items = document.querySelectorAll('.accordion-item');
-            
-            items.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                header.addEventListener('click', () => {
-                    item.classList.toggle('active');
-                });
-            });
         });
     </script>
 </body>
