@@ -17,7 +17,7 @@
         .section-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 25px;
             font-size: 1.6rem;
             margin-bottom: 25px;
             color: #2c3e50;
@@ -179,18 +179,9 @@
 
             <div class="content-body">
                 <h2 class="category-label">Mesa de Ayuda</h2>
-                <p style="color: #666; margin-bottom: 20px;">Bienvenido a tu centro de soporte.</p>
+                <p style="color: #666; margin-bottom: 40px;">Bienvenido a tu centro de soporte.</p>
 
-                <div style="max-width:1100px; margin:0 auto; padding:20px;">
-
-                    <p style="text-align:center; color:#777; margin-bottom:50px; font-size:1.05rem;">
-                        Sería una sección dentro de la plataforma donde se encontrarán preguntas frecuentes, accesos a activación de correo, etc.
-                    </p>
-
-                    <div class="search-bar" style="max-width:650px; margin:0 auto 60px; position:relative;">
-                        <input type="text" id="searchInput" placeholder="¿En qué te podemos ayudar hoy?">
-                        <i class="fas fa-search"></i>
-                    </div>
+                <div style="max-width:1100px; margin:0 auto; padding:40px;">
 
                     <div class="grid">
                         <div>
@@ -288,7 +279,7 @@
             if (tipo.includes('Llamada')) {
                 text.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
             } else {
-                text.innerHTML = `Estamos procesando: <strong>${tipo}</strong>`;
+                text.innerHTML = Estamos procesando: <strong>${tipo}</strong>;
             }
             modal.style.display = 'flex';
         }
