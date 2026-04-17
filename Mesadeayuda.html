@@ -8,6 +8,133 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+        }
+
+        /* Sidebar original */
+        .sidebar {
+            width: 260px;
+            background: #1a237e;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-logo-img {
+            width: 150px;
+            height: auto;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .menu-item a {
+            display: block;
+            padding: 12px 25px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .menu-item a:hover, .menu-item.active a {
+            background: #283593;
+            color: white;
+            border-left: 4px solid #ffc107;
+        }
+
+        /* Top nav original */
+        .top-nav {
+            background: white;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile-img-container {
+            width: 40px;
+            height: 40px;
+            background: #1a237e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-text {
+            text-align: right;
+        }
+
+        .profile-handle {
+            font-size: 0.7rem;
+            color: #777;
+        }
+
+        .profile-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .arrow-down {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .main-content {
+            margin-left: 260px;
+        }
+
+        .content-body {
+            padding: 30px;
+        }
+
+        .category-label {
+            font-size: 1.8rem;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -75,6 +202,7 @@
             margin-bottom: 12px;
             cursor: pointer;
             transition: 0.3s;
+            background: white;
         }
 
         .card-item:hover {
@@ -95,7 +223,7 @@
         .brown { color: #8d6e63; }
 
         .btn-call {
-            background: #1e3a8a;
+            background: #1a237e;
             color: white;
             padding: 18px;
             border-radius: 50px;
@@ -107,13 +235,13 @@
             gap: 10px;
             margin-top: 30px;
             width: 100%;
-            text-decoration: none;
-            cursor: pointer;
             border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .btn-call:hover {
-            background: #152c66;
+            background: #283593;
         }
 
         .modal-bg {
@@ -149,7 +277,7 @@
         }
 
         .btn-close {
-            background: #1e3a8a;
+            background: #1a237e;
             color: white;
             border: none;
             padding: 12px 30px;
@@ -160,141 +288,7 @@
         }
 
         .btn-close:hover {
-            background: #152c66;
-        }
-
-        /* Estilos para sidebar y top-nav (faltantes) */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fb;
-        }
-
-        .root-container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(135deg, #1a2a4f 0%, #0f1a30 100%);
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 30px 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-        }
-
-        .sidebar-logo-img {
-            width: 180px;
-            height: auto;
-            filter: brightness(0) invert(1);
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-        }
-
-        .menu-item {
-            margin: 8px 0;
-        }
-
-        .menu-item a {
-            display: block;
-            padding: 12px 25px;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .menu-item a:hover, .menu-item.active a {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-left: 4px solid #f1c40f;
-        }
-
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-        }
-
-        .top-nav {
-            background: white;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: #666;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .header-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .profile-img-container {
-            width: 45px;
-            height: 45px;
-            background: #4481eb;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .profile-text {
-            text-align: right;
-        }
-
-        .profile-handle {
-            display: block;
-            font-size: 0.75rem;
-            color: #888;
-        }
-
-        .profile-name {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .content-body {
-            padding: 40px;
-        }
-
-        .category-label {
-            font-size: 1.8rem;
-            color: #1a2a4f;
-            margin-bottom: 10px;
+            background: #283593;
         }
     </style>
 </head>
