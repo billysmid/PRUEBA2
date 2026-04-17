@@ -323,3 +323,134 @@ body {
     align-items: center;
     gap: 12px;
 }
+/* AJUSTE PARA EL TEXTO SUPERIOR */
+.help-description {
+    text-align: center;
+    color: #777;
+    margin: 0 auto 45px;
+    font-size: 1.1rem;
+    max-width: 850px;
+    line-height: 1.6;
+}
+/* TÍTULO PRINCIPAL MÁS GRANDE */
+.category-label {
+    font-size: 2.8rem !important; /* Tamaño aumentado */
+    font-weight: 800;
+    color: #1a2a40;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+/* DESCRIPCIÓN REFORZADA */
+.help-description-large {
+    text-align: center; 
+    color: #555; 
+    margin-bottom: 60px; 
+    font-size: 1.2rem; /* Un poco más grande para legibilidad */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+/* RESET Y VARIABLES */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "DIN Round Pro", "Segoe UI", sans-serif; }
+:root {
+    --duo-blue: #1cb0f6;
+    --duo-dark-blue: #1e3a8a;
+    --duo-gray: #e5e5e5;
+    --duo-text: #3c3c3c;
+    --duo-bg-input: #f7f9fa;
+}
+
+.root-container { display: flex; height: 100vh; }
+
+/* MAIN LAYOUT */
+.main-content { flex: 1; overflow-y: auto; background-color: #fff; }
+
+/* HEADER ESTILO DUOLINGO */
+.help-header { padding: 60px 20px 20px; text-align: center; }
+.main-title { font-size: 3.5rem; font-weight: 800; color: var(--duo-text); margin-bottom: 10px; }
+.main-subtitle { font-size: 1.25rem; color: #777; font-weight: 500; }
+
+/* BUSCADOR (CLAVE DEL ESTILO) */
+.search-section { padding: 40px 20px; max-width: 800px; margin: 0 auto; }
+.search-wrapper { position: relative; }
+.search-wrapper input {
+    width: 100%;
+    padding: 22px 30px 22px 65px;
+    border-radius: 16px;
+    border: 2px solid var(--duo-gray);
+    background-color: var(--duo-bg-input);
+    font-size: 1.3rem;
+    color: var(--duo-text);
+    outline: none;
+    transition: all 0.2s;
+}
+.search-wrapper input:focus { border-color: var(--duo-blue); background-color: #fff; }
+.search-wrapper i { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--duo-blue); font-size: 1.6rem; }
+
+/* GRID DE TARJETAS */
+.container-inner { max-width: 1050px; margin: 0 auto; padding: 0 20px 60px; }
+.help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.column-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; color: var(--duo-text); }
+
+/* CARDS ESTILO DUOLINGO (Bordes marcados) */
+.duo-card {
+    border: 2px solid var(--duo-gray);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.2s;
+    background: #fff;
+}
+.duo-card:hover { border-color: var(--duo-blue); transform: translateY(-2px); }
+.duo-card:active { transform: translateY(0); }
+
+.card-header, .action-card {
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #4b4b4b;
+}
+
+.card-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 25px;
+    color: #777;
+    transition: all 0.3s ease;
+}
+.accordion.active .card-body { max-height: 200px; padding-bottom: 20px; }
+.accordion.active .card-header i.fa-chevron-down { transform: rotate(180deg); transition: 0.3s; }
+
+/* BOTÓN DE LLAMADA */
+.duo-btn-primary {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin: 60px auto 0;
+    padding: 20px;
+    border-radius: 16px;
+    border: none;
+    background-color: var(--duo-dark-blue);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #152d6a; /* Sombra sólida estilo Duolingo */
+}
+.duo-btn-primary:active { transform: translateY(4px); box-shadow: none; }
+
+/* COLORES DE ICONOS */
+.icon-faq { color: #ff4b4b; }
+.icon-tools { color: #4b4b4b; }
+.icon-biz { color: #8d6e63; }
+.icon-user { color: var(--duo-blue); }
+.icon-key { color: #ffc800; }
+.icon-email { color: #ff4b4b; }
+.icon-calc { color: var(--duo-blue); }
+.icon-arrow { color: var(--duo-blue); }
