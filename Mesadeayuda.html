@@ -8,171 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* VARIABLES DE COLOR (tomadas del segundo código) */
-        :root {
-            --andes-blue-light: #00c1ff; /* Color celeste del sidebar */
-            --andes-navy: #1a2a4f;       /* Color azul marino del botón */
-            --bg-body: #ffffff;
-            --text-dark: #1a2a4f;
-            --gray-border: #e5e5e5;
-        }
-
-        /* RESET Y ESTILOS BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            background: #f4f6f9;
-        }
-
-        /* ========== SIDEBAR (AHORA EN CELESTE #00c1ff) ========== */
-        .sidebar {
-            width: 280px;
-            background: var(--andes-blue-light); /* Color celeste */
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .sidebar-header {
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 20px;
-        }
-
-        .sidebar-logo-img {
-            width: 160px;
-            height: auto;
-            filter: brightness(0) invert(1);
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-        }
-
-        .menu-item {
-            margin: 5px 0;
-        }
-
-        .menu-item a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 24px;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item a:hover {
-            background: rgba(255,255,255,0.15);
-            color: white;
-        }
-
-        .menu-item.active a {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border-left: 4px solid #ffffff;
-        }
-
-        /* ========== TOP NAV BAR ========== */
-        .top-nav {
-            background: white;
-            padding: 12px 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-bottom: 1px solid var(--gray-border);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: #5a6874;
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            transition: color 0.2s;
-        }
-
-        .nav-item a:hover {
-            color: var(--andes-blue-light);
-        }
-
-        .header-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .profile-img-container {
-            width: 42px;
-            height: 42px;
-            background: var(--andes-blue-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .profile-text {
-            text-align: right;
-        }
-
-        .profile-handle {
-            display: block;
-            font-size: 0.7rem;
-            color: #8a99a8;
-        }
-
-        .profile-name {
-            font-weight: 700;
-            color: #1e2a3e;
-            font-size: 0.9rem;
-        }
-
-        .arrow-down {
-            font-size: 0.7rem;
-            color: #8a99a8;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 280px;
-        }
-
-        .content-body {
-            padding: 35px 45px;
-        }
-
-        .category-label {
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        /* ========== TU ESTILO ORIGINAL (sin modificar) ========== */
+        /* Estilos adicionales que complementan tu CSS sin modificar tus colores */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -244,7 +80,7 @@
         }
 
         .card-item:hover {
-            border-color: var(--andes-blue-light);
+            border-color: var(--andes-cyan);
             background: #f9fbff;
         }
 
@@ -280,7 +116,7 @@
         }
 
         .btn-call:hover {
-            background: #0f2a6b;
+            background: #001a3a;
         }
 
         .modal-bg {
@@ -327,7 +163,29 @@
         }
 
         .btn-close:hover {
-            background: #0f2a6b;
+            background: #001a3a;
+        }
+
+        /* Ajustes para mantener consistencia con tu CSS */
+        .main-content {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 20px 80px;
+            min-height: 100vh;
+            background-color: #fff;
+            width: calc(100% - 280px);
+        }
+
+        .content-body {
+            padding: 0;
+        }
+
+        .category-label {
+            color: var(--andes-navy);
+            font-size: 2.8rem !important;
+            font-weight: 800;
+            margin: 30px 0 20px 0;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -370,7 +228,7 @@
                 <h2 class="category-label">Mesa de Ayuda</h2>
                 <p style="color: #666; margin-bottom: 40px;">Bienvenido a tu centro de soporte.</p>
 
-                <div style="max-width:1100px; margin:0 auto; padding:40px;">
+                <div style="max-width:1100px; margin:0 auto;">
 
                     <div class="grid">
                         <div>
@@ -469,7 +327,7 @@
             if (tipo.includes('Llamada')) {
                 textElement.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
             } else {
-                // CORREGIDO: Ahora usa concatenación correcta
+                // CORREGIDO: Error solucionado
                 textElement.innerHTML = 'Estamos procesando: <strong>' + tipo + '</strong>';
             }
             modal.style.display = 'flex';
