@@ -107,6 +107,13 @@
             gap: 10px;
             margin-top: 30px;
             width: 100%;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-call:hover {
+            background: #152c66;
         }
 
         .modal-bg {
@@ -139,6 +146,155 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .btn-close {
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-close:hover {
+            background: #152c66;
+        }
+
+        /* Estilos para sidebar y top-nav (faltantes) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fb;
+        }
+
+        .root-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #1a2a4f 0%, #0f1a30 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-logo-img {
+            width: 180px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            margin: 8px 0;
+        }
+
+        .menu-item a {
+            display: block;
+            padding: 12px 25px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .menu-item a:hover, .menu-item.active a {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid #f1c40f;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+        }
+
+        .top-nav {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-img-container {
+            width: 45px;
+            height: 45px;
+            background: #4481eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-text {
+            text-align: right;
+        }
+
+        .profile-handle {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .content-body {
+            padding: 40px;
+        }
+
+        .category-label {
+            font-size: 1.8rem;
+            color: #1a2a4f;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -196,7 +352,7 @@
                                     <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
                                     <p>Ingresa con tu usuario temporal. El sistema te pedirá crear una clave de 8 caracteres (números + letras). Confírmala y listo.</p>
                                     <p><strong>¿Cómo veo mis saldos y movimientos?</strong></p>
-                                    <p>Desde el Dashboard principal → sección “Mis Cuentas”. Puedes filtrar por fecha o descargar el estado de cuenta en PDF.</p>
+                                    <p>Desde el Dashboard principal → sección "Mis Cuentas". Puedes filtrar por fecha o descargar el estado de cuenta en PDF.</p>
                                 </div>
                             </div>
 
@@ -207,9 +363,9 @@
                                 </button>
                                 <div class="accordion-content">
                                     <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
-                                    <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu número de DNI o correo registrado.</p>
+                                    <p>En la pantalla de login haz clic en "¿Olvidaste tu usuario?" e ingresa tu número de DNI o correo registrado.</p>
                                     <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
-                                    <p>Ve a Autogestión → “Actualizar mis datos” → verifica tu identidad con código OTP y actualiza el correo.</p>
+                                    <p>Ve a Autogestión → "Actualizar mis datos" → verifica tu identidad con código OTP y actualiza el correo.</p>
                                 </div>
                             </div>
 
@@ -220,7 +376,7 @@
                                 </button>
                                 <div class="accordion-content">
                                     <p><strong>¿Cómo autorizo a un nuevo usuario en mi empresa?</strong></p>
-                                    <p>El administrador principal debe ir a “Gestión de Usuarios” → Agregar colaborador → ingresar DNI y asignar permisos.</p>
+                                    <p>El administrador principal debe ir a "Gestión de Usuarios" → Agregar colaborador → ingresar DNI y asignar permisos.</p>
                                     <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
                                     <p>El administrador debe desactivar o eliminar el usuario desde la misma sección para revocar el acceso inmediatamente.</p>
                                 </div>
@@ -247,9 +403,9 @@
                         </div>
                     </div>
 
-                    <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
+                    <button class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
                         <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
-                    </a>
+                    </button>
                 </div>
             </div>
         </main>
@@ -275,12 +431,14 @@
 
         function abrirModal(tipo) {
             const modal = document.getElementById('miModal');
-            const text = document.getElementById('modal-text');
+            const textElement = document.getElementById('modal-text');
+            
             if (tipo.includes('Llamada')) {
-                text.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
+                textElement.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
             } else {
-                text.innerHTML = Estamos procesando: <strong>${tipo}</strong>;
+                textElement.innerHTML = 'Estamos procesando: <strong>' + tipo + '</strong>';
             }
+            
             modal.style.display = 'flex';
         }
 
