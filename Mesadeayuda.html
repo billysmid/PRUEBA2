@@ -3,114 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte - Caja Los Andes</title>
+    <title>Mesa de Ayuda - Soporte</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* ESTILOS GLOBALES */
-        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap");
-        :root { --andes-cyan: #00c1ff; --andes-navy: #002d57; --duo-gray: #e5e5e5; --duo-bg: #f7f9fa; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Montserrat", sans-serif; }
-        body { background-color: #fff; scroll-behavior: smooth; }
-        .root-container { display: flex; }
-
-        /* SIDEBAR (Imagen 1) */
-        .sidebar { width: 280px; background: var(--andes-cyan); height: 100vh; position: fixed; }
-        .sidebar-header { padding: 40px 30px; }
-        .sidebar-logo-img { width: 100%; max-width: 190px; }
-        .sidebar-menu { list-style: none; margin-top: 10px; }
-        .menu-item a { display: block; padding: 18px 35px; color: white; text-decoration: none; font-weight: 700; }
-        .menu-item.active { background: rgba(255,255,255,0.2); border-left: 6px solid white; }
-
-        /* CONTENIDO (Imagen 2 y 4) */
-        .main-content { margin-left: 280px; flex-grow: 1; padding: 20px 80px; width: calc(100% - 280px); }
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 2px solid #eee; margin-bottom: 40px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; font-size: 14px; font-weight: 800; color: #afafaf; }
-        .profile-avatar { background: var(--andes-cyan); color: white; padding: 10px; border-radius: 50%; font-weight: 800; }
-
-        /* BUSCADOR DUOLINGO */
-        .duo-title { font-size: 2.8rem; font-weight: 800; color: #1a2a40; text-align: center; }
-        .duo-search-container { max-width: 700px; margin: 40px auto; position: relative; }
-        .duo-search-wrapper i { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--andes-cyan); font-size: 1.5rem; }
-        .duo-search-wrapper input { width: 100%; padding: 20px 30px 20px 65px; border-radius: 20px; border: 2px solid var(--duo-gray); background: var(--duo-bg); font-size: 1.1rem; outline: none; }
-
-        /* GRID Y TARJETAS */
-        .duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .duo-card { border: 2px solid var(--duo-gray); border-radius: 16px; margin-bottom: 12px; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: white; transition: 0.2s; }
-        .duo-card:hover { border-color: var(--andes-cyan); background: #f9fbff; }
-        .card-content { max-height: 0; overflow: hidden; transition: 0.3s; padding: 0 25px; color: #666; }
-        .accordion.active .card-content { max-height: 100px; padding: 15px 25px; border: 2px solid var(--duo-gray); border-top: none; margin-top: -14px; margin-bottom: 12px; border-radius: 0 0 16px 16px; }
-
-        /* FORMULARIO (Imagen 3 y 4) */
-        .form-main-title { font-size: 2.2rem; font-weight: 800; text-align: center; margin-top: 60px; }
-        .duo-form-box { max-width: 600px; margin: 40px auto; border: 2px solid var(--duo-gray); border-radius: 25px; padding: 40px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; color: #4b4b4b; }
-        .duo-input, .duo-select { width: 100%; padding: 16px; border-radius: 12px; border: 2px solid var(--duo-gray); background: var(--duo-bg); outline: none; font-size: 1rem; }
-        .trio-textarea { height: 120px; resize: none; }
-        .duo-btn-submit { width: 100%; background: #1cb0f6; color: white; border: none; padding: 20px; border-radius: 18px; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 0 #1899d6; }
-        .duo-btn-submit:active { transform: translateY(3px); box-shadow: none; }
-        .required { color: #ff4b4b; }
-    </style>
+    <link rel="stylesheet" href="css/Mesadeayuda.css">
 </head>
 <body>
     <div class="root-container">
         <nav class="sidebar">
-            <div class="sidebar-header"><img src="assets/logo_web.png" alt="Logo" class="sidebar-logo-img"></div>
+            <div class="sidebar-header">
+                <img src="assets/logo_web.png" alt="Logo" class="sidebar-logo-img">
+            </div>
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="#">Inicio</a></li>
+                <li class="menu-item"><a href="dashboard.html">Inicio</a></li>
                 <li class="menu-item active"><a href="#">Mesa de ayuda</a></li>
             </ul>
         </nav>
 
         <main class="main-content">
             <nav class="top-nav">
-                <ul class="nav-links"><li><a href="#">DASHBOARD</a></li><li><a href="#">BENEFICIOS</a></li></ul>
-                <div class="header-profile"><span class="profile-name">Niurka Obregon</span><span class="profile-avatar">NO</span></div>
+                <ul class="nav-links">
+                    <li><a href="#">DASHBOARD</a></li>
+                    <li><a href="#">BENEFICIOS</a></li>
+                </ul>
+                <div class="header-profile">
+                    <span class="profile-name">Niurka Obregon</span>
+                    <div class="profile-avatar" style="background:#00c1ff; color:white; padding:10px; border-radius:50%; margin-left:10px; font-weight:bold;">NO</div>
+                </div>
             </nav>
 
-            <h1 class="duo-title">Mesa de Ayuda</h1>
-            <div class="duo-search-container"><div class="duo-search-wrapper"><i class="fas fa-search"></i><input type="text" placeholder="¿En qué podemos ayudar hoy?"></div></div>
+            <div class="content-body">
+                <h1 style="text-align:center; font-size: 2.5rem; margin-bottom: 40px;">Mesa de Ayuda</h1>
 
-            <div class="duo-grid">
-                <div>
-                    <h2 style="margin-bottom:20px;"><i class="fas fa-question-circle" style="color:#ff4b4b"></i> FAQ</h2>
-                    <div class="accordion" onclick="toggleAccordion(this)">
-                        <div class="duo-card"><span>Esenciales del negocio</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="card-content">Manuales operativos de Corebank.</div>
+                <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <h2 style="margin-bottom:20px;"><i class="fas fa-question-circle" style="color:#ff4b4b"></i> Preguntas Frecuentes</h2>
+                        <div class="accordion-item" onclick="toggleAccordion(this)" style="border:2px solid #e5e5e5; border-radius:15px; padding:20px; cursor:pointer; margin-bottom:10px;">
+                            <div style="display:flex; justify-content:space-between; font-weight:bold;">
+                                <span>Esenciales del negocio</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="acc-content" style="display:none; margin-top:15px; color:#666;">
+                                Guías sobre Corebank y procesos internos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 style="margin-bottom:20px;"><i class="fas fa-cog"></i> Autogestión</h2>
+                        
+                        <div class="card-item" onclick="abrirModal('Reiniciar clave de Corebank')" style="border:2px solid #e5e5e5; border-radius:15px; padding:20px; cursor:pointer; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                            <span><i class="fas fa-key" style="color:#f1c40f"></i> Reiniciar clave de Corebank</span>
+                            <i class="fas fa-arrow-right" style="color:#1cb0f6"></i>
+                        </div>
+
+                        <div class="card-item" onclick="abrirModal('Recuperar correo electrónico')" style="border:2px solid #e5e5e5; border-radius:15px; padding:20px; cursor:pointer; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                            <span><i class="fas fa-envelope" style="color:#ff4b4b"></i> Recuperar correo electrónico</span>
+                            <i class="fas fa-arrow-right" style="color:#1cb0f6"></i>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h2 style="margin-bottom:20px;"><i class="fas fa-tools"></i> Autogestión</h2>
-                    <div class="duo-card" onclick="window.location.hash='f-anchor'"><span>Reiniciar clave de Corebank</span><i class="fas fa-arrow-right"></i></div>
-                    <div class="duo-card" onclick="window.location.hash='f-anchor'"><span>Recuperar correo electrónico</span><i class="fas fa-arrow-right"></i></div>
-                </div>
-            </div>
-
-            <h2 class="form-main-title" id="f-anchor">Describe el problema</h2>
-            <div class="duo-form-box">
-                <form id="duolingoForm">
-                    <div class="form-group"><label>Correo electrónico <span class="required">*</span></label><input type="email" class="duo-input" required placeholder="ejemplo@correo.com"></div>
-                    <div class="form-group"><label>Asunto <span class="required">*</span></label><input type="text" class="duo-input" required></div>
-                    <div class="form-group"><label>Descripción <span class="required">*</span></label><textarea class="duo-input trio-textarea" required></textarea></div>
-                    <div class="form-group">
-                        <label>Tipo de problema <span class="required">*</span></label>
-                        <select class="duo-select" required><option value="" disabled selected>SELECCIONA UNO...</option><option value="tecnico">Falla Técnica</option><option value="acceso">Acceso</option></select>
-                    </div>
-                    <button type="submit" class="duo-btn-submit">ENVIAR</button>
-                </form>
             </div>
         </main>
     </div>
 
-    <script>
-        // Solución a errores de consola: Funciones definidas globalmente
-        function toggleAccordion(el) { el.classList.toggle('active'); }
+    <div id="miModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
+        <div style="background:white; padding:40px; border-radius:25px; text-align:center; width:350px;">
+            <div style="background:#27ae60; color:white; width:60px; height:60px; border-radius:15px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:25px;"><i class="fas fa-check"></i></div>
+            <h2 style="margin-bottom:10px;">¡Iniciado!</h2>
+            <p id="modal-text">Procesando solicitud...</p>
+            <button onclick="cerrarModal()" style="margin-top:20px; background:#1cb0f6; color:white; border:none; padding:10px 30px; border-radius:12px; font-weight:bold; cursor:pointer;">Cerrar</button>
+        </div>
+    </div>
 
-        document.getElementById('duolingoForm').onsubmit = function(e) {
-            e.preventDefault();
-            alert('¡Formulario enviado correctamente!');
-        };
+    <script>
+        // Función para los acordeones
+        function toggleAccordion(el) {
+            const content = el.querySelector('.acc-content');
+            const icon = el.querySelector('.fa-chevron-down');
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                content.style.display = "block";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+
+        // FUNCIÓN CORREGIDA (Sin errores de sintaxis)
+        function abrirModal(tipo) {
+            const modal = document.getElementById('miModal');
+            const text = document.getElementById('modal-text');
+            
+            // Usamos comillas normales para evitar el SyntaxError
+            text.innerHTML = "Estamos procesando: <strong>" + tipo + "</strong>";
+            
+            modal.style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        // Cerrar al hacer clic fuera del cuadro blanco
+        window.onclick = function(event) {
+            const modal = document.getElementById('miModal');
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
     </script>
 </body>
 </html>
