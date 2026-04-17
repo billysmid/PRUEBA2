@@ -4,205 +4,439 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesa de Ayuda - Caja Los Andes</title>
+    <link rel="stylesheet" href="css/Mesadeayuda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
+        /* VARIABLES DE COLOR (tomadas del segundo código) */
         :root {
-            --andes-blue-light: #00c1ff; /* Color exacto del sidebar */
-            --andes-navy: #1a2a4f;       /* Color del botón Llamar */
+            --andes-blue-light: #00c1ff; /* Color celeste del sidebar */
+            --andes-navy: #1a2a4f;       /* Color azul marino del botón */
             --bg-body: #ffffff;
             --text-dark: #1a2a4f;
             --gray-border: #e5e5e5;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        /* RESET Y ESTILOS BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body { background-color: var(--bg-body); overflow-x: hidden; }
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            background: #f4f6f9;
+        }
 
-        .root-container { display: flex; min-height: 100vh; }
-
-        /* SIDEBAR (Estilo imagen 80497.jpg) */
+        /* ========== SIDEBAR (AHORA EN CELESTE #00c1ff) ========== */
         .sidebar {
-            width: 260px;
-            background-color: var(--andes-blue-light);
+            width: 280px;
+            background: var(--andes-blue-light); /* Color celeste */
+            color: white;
             position: fixed;
             height: 100vh;
-            color: white;
-            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
-        .sidebar-logo { padding: 20px 30px; margin-bottom: 20px; }
-        .sidebar-logo img { width: 140px; filter: brightness(0) invert(1); }
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+        }
 
-        .sidebar-menu { list-style: none; }
+        .sidebar-logo-img {
+            width: 160px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            margin: 5px 0;
+        }
+
         .menu-item a {
-            display: block;
-            padding: 15px 30px;
-            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-        .menu-item.active { background: rgba(255,255,255,0.15); }
 
-        /* MAIN CONTENT */
-        .main-content { flex: 1; margin-left: 260px; }
+        .menu-item a:hover {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
 
+        .menu-item.active a {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-left: 4px solid #ffffff;
+        }
+
+        /* ========== TOP NAV BAR ========== */
         .top-nav {
-            padding: 20px 50px;
+            background: white;
+            padding: 12px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border-bottom: 1px solid var(--gray-border);
         }
 
-        .nav-links { display: flex; list-style: none; gap: 25px; }
-        .nav-links a { text-decoration: none; color: #999; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.5px; }
-
-        .profile-section { display: flex; align-items: center; gap: 10px; }
-        .profile-avatar { 
-            width: 35px; height: 35px; 
-            background: var(--andes-blue-light); 
-            border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: bold; font-size: 0.8rem;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
         }
 
-        /* CUERPO DE LA MESA DE AYUDA */
-        .content-body { padding: 50px 80px; max-width: 1200px; margin: 0 auto; }
-        .main-title { font-size: 2.2rem; color: var(--text-dark); font-weight: 800; margin-bottom: 5px; }
-        .subtitle { color: #888; margin-bottom: 40px; font-size: 0.95rem; }
+        .nav-item a {
+            text-decoration: none;
+            color: #5a6874;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
 
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 1.2rem; color: var(--text-dark); }
+        .nav-item a:hover {
+            color: var(--andes-blue-light);
+        }
 
-        /* ACORDEONES Y CARDS (Estilo Duolingo corregido) */
-        .custom-card {
-            border: 2px solid var(--gray-border);
-            border-radius: 15px;
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-img-container {
+            width: 42px;
+            height: 42px;
+            background: var(--andes-blue-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .profile-text {
+            text-align: right;
+        }
+
+        .profile-handle {
+            display: block;
+            font-size: 0.7rem;
+            color: #8a99a8;
+        }
+
+        .profile-name {
+            font-weight: 700;
+            color: #1e2a3e;
+            font-size: 0.9rem;
+        }
+
+        .arrow-down {
+            font-size: 0.7rem;
+            color: #8a99a8;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 280px;
+        }
+
+        .content-body {
+            padding: 35px 45px;
+        }
+
+        .category-label {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        /* ========== TU ESTILO ORIGINAL (sin modificar) ========== */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .accordion-item {
+            margin-bottom: 14px;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .accordion-header {
+            width: 100%;
             padding: 18px 25px;
-            margin-bottom: 12px;
+            background: white;
+            border: none;
+            text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 1.05rem;
             cursor: pointer;
-            transition: 0.2s;
-            background: white;
-            font-weight: 600;
-            color: #4b4b4b;
         }
-        .custom-card:hover { background-color: #f7f9fa; border-color: #ccc; }
-        
-        .card-icon { margin-right: 15px; width: 20px; text-align: center; }
 
-        /* MODAL */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #f9fafc;
+            padding: 0 25px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 20px 25px;
+        }
+
+        .accordion-header i.fa-chevron-down {
+            transition: transform 0.4s;
+        }
+
+        .accordion-item.active .accordion-header i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .card-item {
+            display: flex;
             align-items: center;
-            z-index: 2000;
-        }
-        .modal-content {
+            justify-content: space-between;
+            padding: 18px 25px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.3s;
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            width: 350px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .success-icon {
-            width: 60px; height: 60px; background: #27ae60; color: white;
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 1.8rem;
         }
 
-        /* BOTÓN LLAMAR (Azul Marino como en la foto) */
-        .btn-call-large {
-            grid-column: span 2;
-            background-color: var(--andes-navy);
+        .card-item:hover {
+            border-color: var(--andes-blue-light);
+            background: #f9fbff;
+        }
+
+        .card-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            font-weight: 500; 
+        }
+
+        .red { color: #e74c3c; }
+        .blue { color: #3498db; }
+        .gold { color: #f1c40f; }
+        .brown { color: #8d6e63; }
+
+        .btn-call {
+            background: var(--andes-navy);
             color: white;
-            border: none;
             padding: 18px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            margin-top: 30px;
+            width: 100%;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-call:hover {
+            background: #0f2a6b;
+        }
+
+        .modal-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            width: 380px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .check-square {
+            width: 80px;
+            height: 80px;
+            background: #27ae60;
+            color: white;
+            font-size: 40px;
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-close {
+            background: var(--andes-navy);
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            cursor: pointer;
             margin-top: 20px;
+        }
+
+        .btn-close:hover {
+            background: #0f2a6b;
         }
     </style>
 </head>
 <body>
     <div class="root-container">
         <nav class="sidebar">
-            <div class="sidebar-logo">
-                <img src="assets/logo_web.png" alt="Caja Los Andes">
+            <div class="sidebar-header">
+                <img src="assets/logo_web.png" alt="Caja Los Andes" class="sidebar-logo-img">
             </div>
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="#">Inicio</a></li>
-                <li class="menu-item"><a href="#">Capacitaciones</a></li>
-                <li class="menu-item"><a href="#">Videos</a></li>
-                <li class="menu-item"><a href="#">Herramientas</a></li>
-                <li class="menu-item active"><a href="#">Mesa de ayuda</a></li>
+                <li class="menu-item"><a href="dashboard.html">Inicio</a></li>
+                <li class="menu-item"><a href="capacitaciones.html">Capacitaciones</a></li>
+                <li class="menu-item"><a href="videos.html">Videos</a></li>
+                <li class="menu-item"><a href="herramientas.html">Herramientas</a></li>
+                <li class="menu-item active"><a href="Mesadeayuda.html">Mesa de ayuda</a></li>
             </ul>
         </nav>
 
         <main class="main-content">
             <nav class="top-nav">
                 <ul class="nav-links">
-                    <li><a href="#">DASHBOARD</a></li>
-                    <li><a href="#">MIS CAPACITACIONES</a></li>
-                    <li><a href="#">BENEFICIOS</a></li>
+                    <li class="nav-item"><a href="dashboard.html">DASHBOARD</a></li>
+                    <li class="nav-item"><a href="capacitaciones.html">MIS CAPACITACIONES</a></li>
+                    <li class="nav-item"><a href="beneficios.html">BENEFICIOS</a></li>
                 </ul>
-                <div class="profile-section">
-                    <div class="profile-avatar">NO</div>
-                    <span style="font-weight: bold; color: #333; font-size: 0.9rem;">Niurka Obregon</span>
+
+                <div class="header-profile" id="user-profile-block">
+                    <div class="profile-img-container">
+                        <span id="user-initials">NO</span>
+                    </div>
+                    <div class="profile-text">
+                        <span class="profile-handle" id="user-handle">@obregonsalhuananiurka</span>
+                        <span class="profile-name" id="user-display-name">Niurka Obregon</span>
+                    </div>
+                    <i class="arrow-down">▼</i>
                 </div>
             </nav>
 
             <div class="content-body">
-                <h1 class="main-title">MESA DE AYUDA</h1>
-                <p class="subtitle">Bienvenido a tu centro de soporte.</p>
+                <h2 class="category-label">Mesa de Ayuda</h2>
+                <p style="color: #666; margin-bottom: 40px;">Bienvenido a tu centro de soporte.</p>
 
-                <div class="grid-container">
-                    <div class="section-col">
-                        <h2 class="section-header"><i class="fas fa-question-circle" style="color:#ff4b4b"></i> Preguntas Frecuentes</h2>
-                        <div class="custom-card">
-                            <span><i class="fas fa-briefcase card-icon" style="color:#8d6e63"></i> Esenciales del negocio</span>
-                            <i class="fas fa-chevron-down" style="color:#ccc"></i>
+                <div style="max-width:1100px; margin:0 auto; padding:40px;">
+
+                    <div class="grid">
+                        <div>
+                            <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-briefcase brown"></i> Esenciales del negocio</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
+                                    <p>Ingresa con tu usuario temporal. El sistema te pedirá crear una clave de 8 caracteres (números + letras). Confírmala y listo.</p>
+                                    <p><strong>¿Cómo veo mis saldos y movimientos?</strong></p>
+                                    <p>Desde el Dashboard principal → sección "Mis Cuentas". Puedes filtrar por fecha o descargar el estado de cuenta en PDF.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-user blue"></i> Esenciales del usuario</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
+                                    <p>En la pantalla de login haz clic en "¿Olvidaste tu usuario?" e ingresa tu número de DNI o correo registrado.</p>
+                                    <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
+                                    <p>Ve a Autogestión → "Actualizar mis datos" → verifica tu identidad con código OTP y actualiza el correo.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="card-left"><i class="fas fa-sitemap gold"></i> Esenciales de la organización</div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <p><strong>¿Cómo autorizo a un nuevo usuario en mi empresa?</strong></p>
+                                    <p>El administrador principal debe ir a "Gestión de Usuarios" → Agregar colaborador → ingresar DNI y asignar permisos.</p>
+                                    <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
+                                    <p>El administrador debe desactivar o eliminar el usuario desde la misma sección para revocar el acceso inmediatamente.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="custom-card">
-                            <span><i class="fas fa-user card-icon" style="color:#1cb0f6"></i> Esenciales del usuario</span>
-                            <i class="fas fa-chevron-down" style="color:#ccc"></i>
-                        </div>
-                        <div class="custom-card">
-                            <span><i class="fas fa-sitemap card-icon" style="color:#ffc800"></i> Esenciales de la organización</span>
-                            <i class="fas fa-chevron-down" style="color:#ccc"></i>
+
+                        <div>
+                            <h2 class="section-title"><i class="fas fa-cog" style="color:#34495e"></i> Autogestión</h2>
+                            
+                            <div class="card-item" onclick="abrirModal('Reiniciar clave de Corebank')">
+                                <div class="card-left"><i class="fas fa-key gold"></i> Reiniciar mi clave de Corebank</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
+                            
+                            <div class="card-item" onclick="abrirModal('Recuperar correo electrónico')">
+                                <div class="card-left"><i class="fas fa-envelope red"></i> Recuperar mi correo electrónico</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
+                            
+                            <div class="card-item" onclick="abrirModal('Simuladores de Créditos')">
+                                <div class="card-left"><i class="fas fa-calculator blue"></i> Simuladores de Créditos</div>
+                                <i class="fas fa-arrow-right blue"></i>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-col">
-                        <h2 class="section-header"><i class="fas fa-cog"></i> Autogestión</h2>
-                        <div class="custom-card" onclick="abrirModal('Reiniciar clave de Corebank')">
-                            <span><i class="fas fa-key card-icon" style="color:#ffc800"></i> Reiniciar mi clave de Corebank</span>
-                            <i class="fas fa-arrow-right" style="color:var(--andes-blue-light)"></i>
-                        </div>
-                        <div class="custom-card" onclick="abrirModal('Recuperar correo electrónico')">
-                            <span><i class="fas fa-envelope card-icon" style="color:#ff4b4b"></i> Recuperar mi correo electrónico</span>
-                            <i class="fas fa-arrow-right" style="color:var(--andes-blue-light)"></i>
-                        </div>
-                        <div class="custom-card" onclick="abrirModal('Simuladores de Créditos')">
-                            <span><i class="fas fa-calculator card-icon" style="color:#1cb0f6"></i> Simuladores de Créditos</span>
-                            <i class="fas fa-arrow-right" style="color:var(--andes-blue-light)"></i>
-                        </div>
-                    </div>
-
-                    <button class="btn-call-large" onclick="abrirModal('Llamada a Soporte')">
+                    <button class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
                         <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
                     </button>
                 </div>
@@ -210,38 +444,44 @@
         </main>
     </div>
 
-    <div class="modal-overlay" id="modalSoporte">
-        <div class="modal-content">
-            <div class="success-icon"><i class="fas fa-check"></i></div>
-            <h2 style="color:var(--andes-navy); margin-bottom: 10px;">¡Iniciado!</h2>
-            <p id="modal-msg" style="color:#666; font-size: 0.9rem;"></p>
-            <button onclick="cerrarModal()" style="margin-top:25px; background:var(--andes-blue-light); color:white; border:none; padding:12px 35px; border-radius:12px; font-weight:bold; cursor:pointer;">Cerrar</button>
+    <div class="modal-bg" id="miModal">
+        <div class="modal-box">
+            <div class="check-square"><i class="fas fa-check"></i></div>
+            <h2>¡Solicitud iniciada!</h2>
+            <p id="modal-text">Estamos procesando tu solicitud de forma inmediata.</p>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // Solución definitiva al error 'abrirModal is not defined'
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+        });
+
         function abrirModal(tipo) {
-            const modal = document.getElementById('modalSoporte');
-            const msg = document.getElementById('modal-msg');
+            const modal = document.getElementById('miModal');
+            const textElement = document.getElementById('modal-text');
             
-            // Usamos concatenación simple para evitar errores de comillas
-            msg.innerHTML = "Estamos procesando tu solicitud de: <br><strong>" + tipo + "</strong>";
-            
+            if (tipo.includes('Llamada')) {
+                textElement.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
+            } else {
+                // CORREGIDO: Ahora usa concatenación correcta
+                textElement.innerHTML = 'Estamos procesando: <strong>' + tipo + '</strong>';
+            }
             modal.style.display = 'flex';
         }
 
         function cerrarModal() {
-            document.getElementById('modalSoporte').style.display = 'none';
+            document.getElementById('miModal').style.display = 'none';
         }
 
-        // Cerrar si se hace clic fuera del modal
-        window.onclick = function(event) {
-            const modal = document.getElementById('modalSoporte');
-            if (event.target == modal) {
-                cerrarModal();
-            }
-        }
+        window.addEventListener('click', function(e) {
+            if (e.target.id === 'miModal') cerrarModal();
+        });
     </script>
 </body>
 </html>
