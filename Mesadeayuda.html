@@ -3,294 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de Ayuda - Caja Los Andes</title>
-    <link rel="stylesheet" href="css/Mesadeayuda.css">
+    <title>Soporte - Caja Los Andes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
+        /* ESTILOS GLOBALES */
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap");
+        :root { --andes-cyan: #00c1ff; --andes-navy: #002d57; --duo-gray: #e5e5e5; --duo-bg: #f7f9fa; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Montserrat", sans-serif; }
+        body { background-color: #fff; scroll-behavior: smooth; }
+        .root-container { display: flex; }
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-        }
+        /* SIDEBAR (Imagen 1) */
+        .sidebar { width: 280px; background: var(--andes-cyan); height: 100vh; position: fixed; }
+        .sidebar-header { padding: 40px 30px; }
+        .sidebar-logo-img { width: 100%; max-width: 190px; }
+        .sidebar-menu { list-style: none; margin-top: 10px; }
+        .menu-item a { display: block; padding: 18px 35px; color: white; text-decoration: none; font-weight: 700; }
+        .menu-item.active { background: rgba(255,255,255,0.2); border-left: 6px solid white; }
 
-        .accordion-item {
-            margin-bottom: 14px;
-            border: 1px solid #eee;
-            border-radius: 16px;
-            overflow: hidden;
-            background: white;
-        }
+        /* CONTENIDO (Imagen 2 y 4) */
+        .main-content { margin-left: 280px; flex-grow: 1; padding: 20px 80px; width: calc(100% - 280px); }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 2px solid #eee; margin-bottom: 40px; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; font-size: 14px; font-weight: 800; color: #afafaf; }
+        .profile-avatar { background: var(--andes-cyan); color: white; padding: 10px; border-radius: 50%; font-weight: 800; }
 
-        .accordion-header {
-            width: 100%;
-            padding: 18px 25px;
-            background: white;
-            border: none;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.05rem;
-            cursor: pointer;
-        }
+        /* BUSCADOR DUOLINGO */
+        .duo-title { font-size: 2.8rem; font-weight: 800; color: #1a2a40; text-align: center; }
+        .duo-search-container { max-width: 700px; margin: 40px auto; position: relative; }
+        .duo-search-wrapper i { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--andes-cyan); font-size: 1.5rem; }
+        .duo-search-wrapper input { width: 100%; padding: 20px 30px 20px 65px; border-radius: 20px; border: 2px solid var(--duo-gray); background: var(--duo-bg); font-size: 1.1rem; outline: none; }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            background: #f9fafc;
-            padding: 0 25px;
-        }
+        /* GRID Y TARJETAS */
+        .duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .duo-card { border: 2px solid var(--duo-gray); border-radius: 16px; margin-bottom: 12px; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: white; transition: 0.2s; }
+        .duo-card:hover { border-color: var(--andes-cyan); background: #f9fbff; }
+        .card-content { max-height: 0; overflow: hidden; transition: 0.3s; padding: 0 25px; color: #666; }
+        .accordion.active .card-content { max-height: 100px; padding: 15px 25px; border: 2px solid var(--duo-gray); border-top: none; margin-top: -14px; margin-bottom: 12px; border-radius: 0 0 16px 16px; }
 
-        .accordion-item.active .accordion-content {
-            max-height: 500px;
-            padding: 20px 25px;
-        }
-
-        .accordion-header i.fa-chevron-down {
-            transition: transform 0.4s;
-        }
-
-        .accordion-item.active .accordion-header i.fa-chevron-down {
-            transform: rotate(180deg);
-        }
-
-        .card-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 25px;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .card-item:hover {
-            border-color: #4481eb;
-            background: #f9fbff;
-        }
-
-        .card-left { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            font-weight: 500; 
-        }
-
-        .red { color: #e74c3c; }
-        .blue { color: #3498db; }
-        .gold { color: #f1c40f; }
-        .brown { color: #8d6e63; }
-
-        .btn-call {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-            width: 100%;
-        }
-
-        .modal-bg {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            text-align: center;
-            width: 380px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
-
-        .check-square {
-            width: 80px;
-            height: 80px;
-            background: #27ae60;
-            color: white;
-            font-size: 40px;
-            border-radius: 16px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* FORMULARIO (Imagen 3 y 4) */
+        .form-main-title { font-size: 2.2rem; font-weight: 800; text-align: center; margin-top: 60px; }
+        .duo-form-box { max-width: 600px; margin: 40px auto; border: 2px solid var(--duo-gray); border-radius: 25px; padding: 40px; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; color: #4b4b4b; }
+        .duo-input, .duo-select { width: 100%; padding: 16px; border-radius: 12px; border: 2px solid var(--duo-gray); background: var(--duo-bg); outline: none; font-size: 1rem; }
+        .trio-textarea { height: 120px; resize: none; }
+        .duo-btn-submit { width: 100%; background: #1cb0f6; color: white; border: none; padding: 20px; border-radius: 18px; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 0 #1899d6; }
+        .duo-btn-submit:active { transform: translateY(3px); box-shadow: none; }
+        .required { color: #ff4b4b; }
     </style>
 </head>
 <body>
     <div class="root-container">
         <nav class="sidebar">
-            <div class="sidebar-header">
-                <img src="assets/logo_web.png" alt="Caja Los Andes" class="sidebar-logo-img">
-            </div>
+            <div class="sidebar-header"><img src="assets/logo_web.png" alt="Logo" class="sidebar-logo-img"></div>
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="dashboard.html">Inicio</a></li>
-                <li class="menu-item"><a href="capacitaciones.html">Capacitaciones</a></li>
-                <li class="menu-item"><a href="videos.html">Videos</a></li>
-                <li class="menu-item"><a href="herramientas.html">Herramientas</a></li>
-                <li class="menu-item active"><a href="Mesadeayuda.html">Mesa de ayuda</a></li>
+                <li class="menu-item"><a href="#">Inicio</a></li>
+                <li class="menu-item active"><a href="#">Mesa de ayuda</a></li>
             </ul>
         </nav>
 
         <main class="main-content">
             <nav class="top-nav">
-                <ul class="nav-links">
-                    <li class="nav-item"><a href="dashboard.html">DASHBOARD</a></li>
-                    <li class="nav-item"><a href="capacitaciones.html">MIS CAPACITACIONES</a></li>
-                    <li class="nav-item"><a href="beneficios.html">BENEFICIOS</a></li>
-                </ul>
-
-                <div class="header-profile" id="user-profile-block">
-                    <div class="profile-img-container">
-                        <span id="user-initials">NO</span>
-                    </div>
-                    <div class="profile-text">
-                        <span class="profile-handle" id="user-handle">@obregonsalhuananiurka</span>
-                        <span class="profile-name" id="user-display-name">Niurka Obregon</span>
-                    </div>
-                    <i class="arrow-down">▼</i>
-                </div>
+                <ul class="nav-links"><li><a href="#">DASHBOARD</a></li><li><a href="#">BENEFICIOS</a></li></ul>
+                <div class="header-profile"><span class="profile-name">Niurka Obregon</span><span class="profile-avatar">NO</span></div>
             </nav>
 
-            <div class="content-body">
-                <h2 class="category-label">Mesa de Ayuda</h2>
-                <p style="color: #666; margin-bottom: 40px;">Bienvenido a tu centro de soporte.</p>
+            <h1 class="duo-title">Mesa de Ayuda</h1>
+            <div class="duo-search-container"><div class="duo-search-wrapper"><i class="fas fa-search"></i><input type="text" placeholder="¿En qué podemos ayudar hoy?"></div></div>
 
-                <div style="max-width:1100px; margin:0 auto; padding:40px;">
-
-                    <div class="grid">
-                        <div>
-                            <h2 class="section-title"><i class="fas fa-question-circle red"></i> Preguntas Frecuentes</h2>
-
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    <div class="card-left"><i class="fas fa-briefcase brown"></i> Esenciales del negocio</div>
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p><strong>¿Cómo activo mi clave de Corebank por primera vez?</strong></p>
-                                    <p>Ingresa con tu usuario temporal. El sistema te pedirá crear una clave de 8 caracteres (números + letras). Confírmala y listo.</p>
-                                    <p><strong>¿Cómo veo mis saldos y movimientos?</strong></p>
-                                    <p>Desde el Dashboard principal → sección “Mis Cuentas”. Puedes filtrar por fecha o descargar el estado de cuenta en PDF.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    <div class="card-left"><i class="fas fa-user blue"></i> Esenciales del usuario</div>
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p><strong>Olvidé mi usuario, ¿cómo lo recupero?</strong></p>
-                                    <p>En la pantalla de login haz clic en “¿Olvidaste tu usuario?” e ingresa tu número de DNI o correo registrado.</p>
-                                    <p><strong>¿Cómo cambio mi correo electrónico?</strong></p>
-                                    <p>Ve a Autogestión → “Actualizar mis datos” → verifica tu identidad con código OTP y actualiza el correo.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    <div class="card-left"><i class="fas fa-sitemap gold"></i> Esenciales de la organización</div>
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p><strong>¿Cómo autorizo a un nuevo usuario en mi empresa?</strong></p>
-                                    <p>El administrador principal debe ir a “Gestión de Usuarios” → Agregar colaborador → ingresar DNI y asignar permisos.</p>
-                                    <p><strong>¿Qué hago si un empleado ya no trabaja con nosotros?</strong></p>
-                                    <p>El administrador debe desactivar o eliminar el usuario desde la misma sección para revocar el acceso inmediatamente.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h2 class="section-title"><i class="fas fa-cog" style="color:#34495e"></i> Autogestión</h2>
-                            
-                            <div class="card-item" onclick="abrirModal('Reiniciar clave de Corebank')">
-                                <div class="card-left"><i class="fas fa-key gold"></i> Reiniciar mi clave de Corebank</div>
-                                <i class="fas fa-arrow-right blue"></i>
-                            </div>
-                            
-                            <div class="card-item" onclick="abrirModal('Recuperar correo electrónico')">
-                                <div class="card-left"><i class="fas fa-envelope red"></i> Recuperar mi correo electrónico</div>
-                                <i class="fas fa-arrow-right blue"></i>
-                            </div>
-                            
-                            <div class="card-item" onclick="abrirModal('Simuladores de Créditos')">
-                                <div class="card-left"><i class="fas fa-calculator blue"></i> Simuladores de Créditos</div>
-                                <i class="fas fa-arrow-right blue"></i>
-                            </div>
-                        </div>
+            <div class="duo-grid">
+                <div>
+                    <h2 style="margin-bottom:20px;"><i class="fas fa-question-circle" style="color:#ff4b4b"></i> FAQ</h2>
+                    <div class="accordion" onclick="toggleAccordion(this)">
+                        <div class="duo-card"><span>Esenciales del negocio</span><i class="fas fa-chevron-down"></i></div>
+                        <div class="card-content">Manuales operativos de Corebank.</div>
                     </div>
-
-                    <a href="#" class="btn-call" onclick="abrirModal('Llamada a Mesa de Ayuda')">
-                        <i class="fas fa-phone-alt"></i> Llamar a Mesa de Ayuda
-                    </a>
                 </div>
+                <div>
+                    <h2 style="margin-bottom:20px;"><i class="fas fa-tools"></i> Autogestión</h2>
+                    <div class="duo-card" onclick="window.location.hash='f-anchor'"><span>Reiniciar clave de Corebank</span><i class="fas fa-arrow-right"></i></div>
+                    <div class="duo-card" onclick="window.location.hash='f-anchor'"><span>Recuperar correo electrónico</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+
+            <h2 class="form-main-title" id="f-anchor">Describe el problema</h2>
+            <div class="duo-form-box">
+                <form id="duolingoForm">
+                    <div class="form-group"><label>Correo electrónico <span class="required">*</span></label><input type="email" class="duo-input" required placeholder="ejemplo@correo.com"></div>
+                    <div class="form-group"><label>Asunto <span class="required">*</span></label><input type="text" class="duo-input" required></div>
+                    <div class="form-group"><label>Descripción <span class="required">*</span></label><textarea class="duo-input trio-textarea" required></textarea></div>
+                    <div class="form-group">
+                        <label>Tipo de problema <span class="required">*</span></label>
+                        <select class="duo-select" required><option value="" disabled selected>SELECCIONA UNO...</option><option value="tecnico">Falla Técnica</option><option value="acceso">Acceso</option></select>
+                    </div>
+                    <button type="submit" class="duo-btn-submit">ENVIAR</button>
+                </form>
             </div>
         </main>
     </div>
 
-    <div class="modal-bg" id="miModal">
-        <div class="modal-box">
-            <div class="check-square"><i class="fas fa-check"></i></div>
-            <h2>¡Solicitud iniciada!</h2>
-            <p id="modal-text">Estamos procesando tu solicitud de forma inmediata.</p>
-            <button class="btn-close" onclick="cerrarModal()">Cerrar</button>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    this.parentElement.classList.toggle('active');
-                });
-            });
-        });
+        // Solución a errores de consola: Funciones definidas globalmente
+        function toggleAccordion(el) { el.classList.toggle('active'); }
 
-        function abrirModal(tipo) {
-            const modal = document.getElementById('miModal');
-            const text = document.getElementById('modal-text');
-            if (tipo.includes('Llamada')) {
-                text.innerHTML = 'Conectando con un agente...<br><small>Simulación activa</small>';
-            } else {
-                text.innerHTML = Estamos procesando: <strong>${tipo}</strong>;
-            }
-            modal.style.display = 'flex';
-        }
-
-        function cerrarModal() {
-            document.getElementById('miModal').style.display = 'none';
-        }
-
-        window.addEventListener('click', function(e) {
-            if (e.target.id === 'miModal') cerrarModal();
-        });
+        document.getElementById('duolingoForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('¡Formulario enviado correctamente!');
+        };
     </script>
 </body>
 </html>
